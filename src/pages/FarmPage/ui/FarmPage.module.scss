@@ -1,0 +1,18 @@
+.FarmPage {
+  height: 100vh;
+  width: 100vw;
+  overflow: scroll;
+  display: inline-block;
+  background: linear-gradient(0deg, #5abf5c 0%, #5abf5c 100%),
+    linear-gradient(0deg, var(--White, #fff) 0%, var(--White, #fff) 100%),
+    linear-gradient(180deg, #c7eac7 0%, #4cb24e 100%);
+}
+
+g[id^='active']:hover {
+    filter: 
+      drop-shadow( 2px  2px 0px #0DFF11) 
+      drop-shadow(-2px  2px 0px #0DFF11) 
+      drop-shadow(-2px -2px 0px #0DFF11)
+      drop-shadow( 2px -2px 0px #0DFF11);
+    cursor: pointer;
+}
