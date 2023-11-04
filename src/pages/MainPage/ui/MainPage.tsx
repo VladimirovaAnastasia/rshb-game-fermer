@@ -7,6 +7,7 @@ import {MainPageHeader} from "pages/MainPage/ui/MainPageHeader/MainPageHeader";
 import cls from "./MainPage.module.scss";
 import {LoginModal} from "features/AuthByUsername";
 import {useNavigate} from "react-router-dom";
+import {RoutePath} from "shared/config/routeConfig/routeConfig";
 
 const MainPage = () => {
     const { t } = useTranslation();
@@ -22,7 +23,7 @@ const MainPage = () => {
     }, []);
 
     const onSuccess = useCallback(() => {
-        navigate('/game')
+        navigate(RoutePath.farm)
     }, []);
 
     return (
