@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Golos+Text&display=swap');
 @import "reset";
 @import "variables/global";
 @import "themes/normal";
 @import "themes/dark";
 @import "themes/orange";
+@import "themes/green";
 
 .app,
 .app_modal {
@@ -21,5 +23,4 @@
 
 .page-wrapper {
     flex-grow: 1;
-    padding: 20px;
 }

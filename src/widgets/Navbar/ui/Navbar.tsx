@@ -56,6 +56,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
                 <LoginModal
                     isOpen={isAuthModal}
                     onClose={onCloseModal}
+                    onSuccess={onCloseModal}
                 />
             )}
         </div>

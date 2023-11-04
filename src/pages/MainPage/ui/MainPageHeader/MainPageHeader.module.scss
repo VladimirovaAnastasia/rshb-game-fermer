@@ -1,0 +1,22 @@
+.MainPageHeader {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    padding: 24px 24px 0 24px;
+}
+
+.logoText {
+    color: var(--light);
+    margin-left: 12px;
+    margin-top: 4px;
+}
+
+.logoTextMain {
+    font-size: 20px;
+    line-height: 22px;
+}
+
+.logoTextMinor {
+    font-size: 9px;
+    line-height: 9px;
+}

@@ -22,7 +22,7 @@ export function useTheme(): UseThemeResult {
             newTheme = Theme.DARK;
             break;
         default:
-            newTheme = Theme.LIGHT;
+            newTheme = Theme.GREEN;
         }
         setTheme?.(newTheme);
         localStorage.setItem(LOCAL_STORAGE_THEME_KEY, newTheme);
