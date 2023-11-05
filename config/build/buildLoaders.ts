@@ -7,8 +7,8 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
     const { isDev } = options;
 
     const svgLoader = {
-      test: /\.svg$/,
-      use: [{loader: "@svgr/webpack", options: {svgo: false}}],
+        test: /\.svg$/,
+        use: [{ loader: '@svgr/webpack', options: { svgo: false } }],
     };
 
     const babelLoader = buildBabelLoader(options);

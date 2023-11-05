@@ -1,0 +1,19 @@
+.item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--light);
+    text-decoration: none;
+}
+
+.active {
+    color: var(--green-light);
+    text-shadow:0 0 10px var(--green-light),0 0 5px var(--green-light);
+}
+
+.active:after {
+    position: absolute;
+    bottom: -10px;
+    content: "•"
+}

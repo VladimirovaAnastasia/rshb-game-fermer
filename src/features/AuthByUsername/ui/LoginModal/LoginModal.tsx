@@ -11,7 +11,9 @@ interface LoginModalProps {
     onSuccess: () => void;
 }
 
-export const LoginModal = ({ className, isOpen, onClose, onSuccess }: LoginModalProps) => (
+export const LoginModal = ({
+    className, isOpen, onClose, onSuccess,
+}: LoginModalProps) => (
     <Modal
         className={classNames('', {}, [className])}
         isOpen={isOpen}

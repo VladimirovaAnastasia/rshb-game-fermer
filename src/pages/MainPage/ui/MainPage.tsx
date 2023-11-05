@@ -1,13 +1,13 @@
-import React, {useCallback, useState} from 'react';
+import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import {Button, ButtonTheme} from "shared/ui/Button/Button";
+import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import GameLogo from 'shared/assets/images/game-logo.png';
-import Fermer from 'shared/assets/images/fermer.png';
-import {MainPageHeader} from "pages/MainPage/ui/MainPageHeader/MainPageHeader";
-import cls from "./MainPage.module.scss";
-import {LoginModal} from "features/AuthByUsername";
-import {useNavigate} from "react-router-dom";
-import {RoutePath} from "shared/config/routeConfig/routeConfig";
+import Farmer from 'shared/assets/images/farmer.png';
+import { MainPageHeader } from 'pages/MainPage/ui/MainPageHeader/MainPageHeader';
+import { LoginModal } from 'features/AuthByUsername';
+import { useNavigate } from 'react-router-dom';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import cls from './MainPage.module.scss';
 
 const MainPage = () => {
     const { t } = useTranslation();
@@ -23,7 +23,7 @@ const MainPage = () => {
     }, []);
 
     const onSuccess = useCallback(() => {
-        navigate(RoutePath.farm)
+        navigate(RoutePath.farm);
     }, []);
 
     return (
@@ -31,6 +31,7 @@ const MainPage = () => {
             <MainPageHeader />
             <img
                 src={GameLogo}
+                alt="game-logo"
                 className={cls.logo}
             />
             <div className={cls.buttons}>
@@ -48,7 +49,8 @@ const MainPage = () => {
                 </Button>
             </div>
             <img
-                src={Fermer}
+                src={Farmer}
+                alt="farmer-logo"
             />
             {isAuthModal && (
                 <LoginModal

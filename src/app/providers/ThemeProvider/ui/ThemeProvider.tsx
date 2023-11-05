@@ -8,7 +8,7 @@ interface ThemeProviderProps {
     children: ReactNode;
 }
 
-const ThemeProvider= (props: ThemeProviderProps) => {
+const ThemeProvider = (props: ThemeProviderProps) => {
     const {
         initialTheme,
         children,

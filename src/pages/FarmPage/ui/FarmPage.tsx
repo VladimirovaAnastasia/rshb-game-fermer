@@ -1,12 +1,10 @@
-import FarmMap from "shared/assets/images/farm/map.svg";
-import cls from "./FarmPage.module.scss";
+import FarmMap from 'shared/assets/images/farm/map.svg';
+import cls from './FarmPage.module.scss';
 
-const FarmPage = () => {
-  return (
+const FarmPage = () => (
     <div className={cls.FarmPage}>
-      <FarmMap />
+        <FarmMap />
     </div>
-  );
-};
+);
 
 export default FarmPage;
