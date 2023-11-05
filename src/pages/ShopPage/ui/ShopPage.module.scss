@@ -2,6 +2,18 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  padding: 100px 20px;
+}
+
+.shopHeading {
+  margin-bottom: 30px;
+}
+
+.shopCardsList {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
 }

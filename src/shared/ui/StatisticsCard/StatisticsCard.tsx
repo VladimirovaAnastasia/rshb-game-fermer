@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import { cardTypeIconMapper } from 'shared/ui/StatisticsCard/items';
+import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './StatisticsCard.module.scss';
 
 export const enum StatisticsCardType {
@@ -24,7 +25,7 @@ export const StatisticsCard = memo((props: StatisticsCardProps) => {
     const Icon = cardTypeIconMapper[cardType];
 
     return (
-        <div className={cls.Card}>
+        <div className={classNames(cls.Card, {}, [className])}>
             <Icon />
             {text && <p className={cls.text}>{text}</p>}
         </div>

@@ -1,0 +1,14 @@
+.Heading {
+    color: var(--dark);
+
+    &.level {
+        &-1 {
+            font-size: var(--font-line-xl);
+        };
+
+        &-2 {
+            font-size: var(--font-line-l);
+        }
+    }
+}
+

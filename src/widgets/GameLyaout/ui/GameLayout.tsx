@@ -14,13 +14,13 @@ interface GameHeaderProps {
 export const GameLayout = memo(({ children, className }: GameHeaderProps) => {
     const location = useLocation();
 
-    if (!gameRoutes.includes(location.pathname)) {
+    if (!Object.keys(gameRoutes).includes(location.pathname)) {
         return <>{children}</>;
     }
 
     return (
         <div className={classNames(cls.GameLayout, {}, [className])}>
-            <GameHeader />
+            <GameHeader theme={gameRoutes[location.pathname].headerTheme} />
             {children}
             <GameMenu />
         </div>

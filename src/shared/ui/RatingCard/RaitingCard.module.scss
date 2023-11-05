@@ -1,0 +1,48 @@
+.RatingCard {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font: var(--font-l);
+    color: var(--dark);
+    background: var(--light);
+    border-radius: 16px;
+    padding: 12px;
+    cursor: pointer;
+
+    &:hover {
+        box-shadow: var(--shadow-m)
+    }
+}
+
+.info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+
+.text {
+    font: var(--font-m);
+}
+
+.coinsCount {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+}
+
+.coinsCountText {
+    font-weight: var(--font-bold);;
+}
+
+.active {
+    border: 3px solid transparent;
+    background: linear-gradient(180deg, #1EFE22 0%, #2095AF 100%);
+    box-shadow: inset 0 0 0 100vw #fff;
+
+    &:hover {
+        box-shadow: inset 0 0 0 100vw #fff;
+    }
+}

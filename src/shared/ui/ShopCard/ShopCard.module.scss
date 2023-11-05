@@ -1,0 +1,45 @@
+.ShopCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font: var(--font-l);
+    color: var(--dark);
+    background: var(--light);
+    border-radius: 40px;
+    height: 300px;
+    width: 300px;
+    cursor: pointer;
+
+    &:hover {
+        box-shadow: var(--shadow-m)
+    }
+}
+
+.img {
+    height: 50%;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 50%;
+    padding: 20px;
+}
+
+.text {
+    font: var(--font-m);
+    margin-bottom: 12px;
+}
+
+.coinsCount {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.coinsCountText {
+    font-weight: var(--font-bold);;
+}
