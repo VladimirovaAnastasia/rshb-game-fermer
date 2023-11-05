@@ -9,11 +9,50 @@
     linear-gradient(180deg, #c7eac7 0%, #4cb24e 100%);
 }
 
-g[id^='active']:hover {
-    filter:
-      drop-shadow( 2px  2px 0px #0DFF11)
-      drop-shadow(-2px  2px 0px #0DFF11)
-      drop-shadow(-2px -2px 0px #0DFF11)
-      drop-shadow( 2px -2px 0px #0DFF11);
+g[id^="bed"] {
+  & > g {
+    display: none;
+  }
+
+  &.carrot {
+    g[id^="carrot"] {
+      display: unset;
+    }
+  }
+
+  &.potato {
+    g[id^="potato"] {
+      display: unset;
+    }
+  }
+
+  &.beet {
+    g[id^="beet"] {
+      display: unset;
+    }
+  }
+
+  &.flowers {
+    g[id^="flowers"] {
+      display: unset;
+    }
+  }
+
+  &.wheat {
+    g[id^="wheat"] {
+      display: unset;
+    }
+  }
+
+  &.field {
+    g[id^="field"] {
+      display: unset;
+    }
+  }
+
+  &:hover {
+    filter: drop-shadow(2px 2px 0px #0dff11) drop-shadow(-2px 2px 0px #0dff11)
+      drop-shadow(-2px -2px 0px #0dff11) drop-shadow(2px -2px 0px #0dff11);
     cursor: pointer;
+  }
 }

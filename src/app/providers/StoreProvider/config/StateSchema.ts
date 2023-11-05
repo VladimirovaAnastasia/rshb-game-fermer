@@ -8,13 +8,15 @@ import { ProfileSchema } from 'entities/Profile';
 import { AxiosInstance } from 'axios';
 // import { To } from 'history';
 import { NavigateOptions } from 'react-router';
+import {Bed, BedsSchema} from "entities/Bed";
 
 export interface StateSchema {
-    user: UserSchema;
+  user: UserSchema;
+  beds: BedsSchema;
 
-    // Асинхронные редюсеры
-    loginForm?: LoginSchema;
-    profile?: ProfileSchema;
+  // Асинхронные редюсеры
+  loginForm?: LoginSchema;
+  profile?: ProfileSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

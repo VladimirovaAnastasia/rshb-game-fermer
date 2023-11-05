@@ -39,6 +39,32 @@ server.post('/login', (req, res) => {
     }
 });
 
+// Эндпоинт для логина
+server.get('/beds', (req, res) => {
+    try {
+        const {user_id} = req.query;
+
+        const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));
+        const {beds = []} = db;
+
+        const bedsFilteredByUser = beds.filter(
+            (bed) => bed.user_id === user_id,
+        ).map((bed) => ({
+            ...bed,
+            harvest: new Date() - new Date(bed.plant_time) > 24 * 60 * 60 * 1000 // 24 hours
+        }));
+
+        if (bedsFilteredByUser) {
+            return res.json(bedsFilteredByUser);
+        }
+
+        return res.status(403).json({message: 'Beds for user not found'});
+    } catch (e) {
+        console.log(e);
+        return res.status(500).json({message: e.message});
+    }
+});
+
 // проверяем, авторизован ли пользователь
 // eslint-disable-next-line
 server.use((req, res, next) => {

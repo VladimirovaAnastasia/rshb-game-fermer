@@ -5,6 +5,7 @@ import { NavigateOptions } from 'react-router';
 import { CombinedState, Reducer } from 'redux';
 import { StateSchema, ThunkExtraArg } from './StateSchema';
 import { createReducerManager } from './reducerManager';
+import {bedsReducer} from "entities/Bed";
 
 export function createReduxStore(
     initialState?: StateSchema,
@@ -12,8 +13,9 @@ export function createReduxStore(
     navigate?: (to: any, options?: NavigateOptions) => void,
 ) {
     const rootReducers: ReducersMapObject<StateSchema> = {
-        ...asyncReducers,
-        user: userReducer,
+      ...asyncReducers,
+      user: userReducer,
+      beds: bedsReducer,
     };
 
     const reducerManager = createReducerManager(rootReducers);

@@ -25,6 +25,71 @@
       "password": "123"
     }
   ],
+  "beds": [
+    {
+      "id": "0",
+      "bed_id": "0",
+      "user_id": "1",
+      "plant_time": "Sun Nov 04 2023 15:47:05 GMT+0300 (Moscow Standard Time)",
+      "crop": "carrot"
+    },
+    {
+      "id": "1",
+      "bed_id": "1",
+      "user_id": "1",
+      "plant_time": "Sun Nov 04 2023 15:47:05 GMT+0300 (Moscow Standard Time)",
+      "crop": "carrot"
+    },
+    {
+      "id": "2",
+      "bed_id": "2",
+      "user_id": "1",
+      "plant_time": "Sun Nov 05 2023 15:47:05 GMT+0300 (Moscow Standard Time)",
+      "crop": "wheat"
+    },
+    {
+      "id": "3",
+      "bed_id": "3",
+      "user_id": "1",
+      "plant_time": "Sun Nov 05 2023 15:47:05 GMT+0300 (Moscow Standard Time)",
+      "crop": "wheat"
+    },
+    {
+      "id": "4",
+      "bed_id": "4",
+      "user_id": "1",
+      "plant_time": "Sun Nov 05 2023 15:47:05 GMT+0300 (Moscow Standard Time)",
+      "crop": "wheat"
+    },
+    {
+      "id": "6",
+      "bed_id": "6",
+      "user_id": "1",
+      "plant_time": "Sun Nov 05 2023 15:47:05 GMT+0300 (Moscow Standard Time)",
+      "crop": "potato"
+    },
+    {
+      "id": "7",
+      "bed_id": "7",
+      "user_id": "1",
+      "plant_time": "Sun Nov 05 2023 15:47:05 GMT+0300 (Moscow Standard Time)",
+      "crop": "potato"
+    },
+    {
+      "id": "8",
+      "bed_id": "8",
+      "user_id": "1",
+      "plant_time": "Sun Nov 05 2023 15:47:05 GMT+0300 (Moscow Standard Time)",
+      "crop": "beet"
+    },
+    {
+      "id": "9",
+      "bed_id": "9",
+      "user_id": "1",
+      "plant_time": "Sun Nov 05 2023 15:47:05 GMT+0300 (Moscow Standard Time)",
+      "crop": "beet"
+    }
+  ],
   "profile": {
     "first": "jgh",
     "lastname": "asf",
