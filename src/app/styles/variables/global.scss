@@ -9,6 +9,7 @@
     --font-size-xl: 32px;
     --font-line-xl: 40px;
     --font-xl: var(--font-size-xl) / var(--font-line-xl) var(--font-family-main);
+    --font-bold: 600;
 
     // Размеры
     --navbar-height: 50px;
@@ -24,4 +25,5 @@
     --red-dark: #ce0505;
     --green-light: #42ab44;
     --light: #ffffff;
+    --dark: #101E2C;
 }

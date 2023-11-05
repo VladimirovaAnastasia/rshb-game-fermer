@@ -1,3 +1,3 @@
-import {FarmPageAsync} from "./ui/FarmPage.async";
+import { FarmPageAsync } from './ui/FarmPage.async';
 
-export {FarmPageAsync as FarmPage};
+export { FarmPageAsync as FarmPage };

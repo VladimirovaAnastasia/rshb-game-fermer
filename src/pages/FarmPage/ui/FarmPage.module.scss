@@ -1,4 +1,5 @@
 .FarmPage {
+  position: relative;
   height: 100vh;
   width: 100vw;
   overflow: scroll;
@@ -9,9 +10,9 @@
 }
 
 g[id^='active']:hover {
-    filter: 
-      drop-shadow( 2px  2px 0px #0DFF11) 
-      drop-shadow(-2px  2px 0px #0DFF11) 
+    filter:
+      drop-shadow( 2px  2px 0px #0DFF11)
+      drop-shadow(-2px  2px 0px #0DFF11)
       drop-shadow(-2px -2px 0px #0DFF11)
       drop-shadow( 2px -2px 0px #0DFF11);
     cursor: pointer;
