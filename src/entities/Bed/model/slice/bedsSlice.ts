@@ -1,6 +1,10 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {BedsSchema, Bed} from "../types/bed";
-import {fetchBedsData} from "../services/fetchBedsData/fetchBedsData";
+import {
+  fetchBedsData,
+  harvestBeds,
+  plantBeds,
+} from "../services/fetchBedsData/fetchBedsData";
 
 const initialState: BedsSchema = {
   isLoading: false,
@@ -38,6 +42,30 @@ export const bedsSlice = createSlice({
         }
       )
       .addCase(fetchBedsData.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(harvestBeds.pending, (state) => {
+        state.error = undefined;
+        state.isLoading = true;
+      })
+      .addCase(harvestBeds.fulfilled, (state, action: PayloadAction<Bed[]>) => {
+        state.isLoading = false;
+        state.data.beds = action.payload;
+      })
+      .addCase(harvestBeds.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(plantBeds.pending, (state) => {
+        state.error = undefined;
+        state.isLoading = true;
+      })
+      .addCase(plantBeds.fulfilled, (state, action: PayloadAction<Bed[]>) => {
+        state.isLoading = false;
+        state.data.beds = action.payload;
+      })
+      .addCase(plantBeds.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });
