@@ -42,7 +42,7 @@ const FarmPage = () => {
 
   const plantActivity = useMemo(
     () =>
-      beds.some((bed) => !bed.plant_time) &&
+      beds.some((bed) => !bed.crop) &&
       tasks.some((task) => task.active && task.type === "plant"),
     [beds, tasks]
   );
@@ -102,7 +102,7 @@ const FarmPage = () => {
     };
   }, [beds]);
 
-  const listener = useCallback(() => {
+  const handleCompleteTask = useCallback(() => {
     const task = tasks.find((task) => task.type === "plant");
 
     if (task && user) {
@@ -120,23 +120,28 @@ const FarmPage = () => {
   );
 
   const [opened, setOpened] = useState(false);
+  const [bedId, setBedId] = useState<string>();
 
   const handleCloseModal = () => {
     setOpened(false);
   };
 
-  const handleSubmitModal = (bedPlants: BedPlant[]) => {
-    const planted_beds = beds.map((toPlant) => {
-      const bed = bedPlants.find((item) => item.bed_id === toPlant.bed_id);
+  const handleSubmitModal = (bed: BedPlant) => {
+    console.log(bed, beds);
 
+    if (!bedId) {
+      return;
+    }
+
+    const planted_beds = beds.map((toPlant) => {
       return {
         ...toPlant,
-        ...(bed ? {crop: bed.crop} : {}),
+        ...(toPlant.bed_id === bed.bed_id ? {crop: bed.crop} : {}),
       };
     });
-    console.log(planted_beds);
     dispatch(plantBeds({user_id: user?.id!, beds: planted_beds}));
-    //listener();
+    // TODO: завершить таск
+    //handleCompleteTask()
   };
 
   return (
@@ -145,19 +150,24 @@ const FarmPage = () => {
         onClose={handleCloseModal}
         onSubmit={handleSubmitModal}
         opened={opened}
+        bedId={bedId!}
       />
       {plantActivity &&
-        Array.from(emptyFields).map((element) => {
+        Array.from(emptyFields).map((element, index) => {
           const position = element.getBoundingClientRect();
+          const id = element.getAttribute("id")?.split("-")[1];
 
           return (
             <div
               className={cls.task}
               style={{
-                top: position.top + position.height / 4,
-                left: position.left + position.width / 4,
+                top: position.top + position.height / 4 + window.scrollY,
+                left: position.left + position.width / 4 + window.scrollX,
               }}
-              onClick={() => setOpened(true)}
+              onClick={() => {
+                setBedId(id);
+                setOpened(true);
+              }}
             >
               <TaskCard
                 text="Посеять растения"

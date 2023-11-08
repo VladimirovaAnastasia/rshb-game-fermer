@@ -1,6 +1,6 @@
 import {Modal} from "shared/ui/Modal/Modal";
 import cls from "./PlantModal.module.scss";
-import {useMemo, useState, MouseEvent, useEffect} from "react";
+import {useMemo, useState, MouseEvent} from "react";
 import {ReactComponent as Back} from "shared/assets/images/farm/back.svg";
 import {ReactComponent as Pause} from "shared/assets/images/farm/pause.svg";
 import {ReactComponent as Play} from "shared/assets/images/farm/play.svg";
@@ -12,8 +12,9 @@ import {ReactComponent as Wheat} from "shared/assets/images/farm/wheat-icon.svg"
 
 interface Props {
   onClose: () => void;
-  onSubmit: (bedPlants: BedPlant[]) => void;
+  onSubmit: (bedPlants: BedPlant) => void;
   opened: boolean;
+  bedId: string;
 }
 
 const OPTIONS = {
@@ -29,80 +30,40 @@ export interface BedPlant {
   bed_id: string;
 }
 
-export const PlantModal = ({onClose, onSubmit, opened}: Props) => {
-  const [paused, setPaused] = useState(false);
+export const PlantModal = ({onClose, onSubmit, opened, bedId}: Props) => {
+  const [paused, setPaused] = useState<boolean>(false);
+  const [plant, setPlant] = useState<string>();
 
-  const handleTogglePause = () => {
-    setPaused((paused) => !paused);
-  };
-
-  const options = useMemo(() => {
-    return Array(10)
-      .fill(null)
-      .map(() => {
-        const entries = Object.entries(OPTIONS);
-        const index = Math.floor(Math.random() * 5);
-        return entries[index];
-      });
+  const desiredCrop = useMemo(() => {
+    const entries = Object.entries(OPTIONS);
+    const index = Math.floor(Math.random() * 5);
+    return entries[index];
   }, [opened]);
-
-  const [desired, setDesired] = useState<(string | null)[]>([null, null]);
 
   const handleDesiredPlantClick = (event: MouseEvent<HTMLDivElement>) => {
     const crop = event.currentTarget.getAttribute("data-crop");
-    const bed_id = event.currentTarget.getAttribute("data-bed-id");
-
-    if (desired.every((value) => value === null)) {
-      setDesired([crop, bed_id]);
+    if (crop === plant) {
+      handleSubmit({
+        crop: crop,
+        bed_id: bedId,
+      });
+    } else {
+      console.log("wrong plant");
     }
+    setPlant(undefined);
   };
-
-  const [beds, setBeds] = useState<BedPlant[]>(
-    Array<BedPlant>(10)
-      .fill({bed_id: "", crop: ""})
-      .map((item) => ({...item}))
-  );
 
   const handlePlantClick = (event: MouseEvent<HTMLDivElement>) => {
-    if (desired.every((value) => value === null)) {
-      return;
-    }
-    const [crop, bed_id] = desired;
-
     const plant = event.currentTarget.getAttribute("data-plant");
-
-    if (plant === crop) {
-      setBeds((beds) => {
-        beds[+bed_id!].bed_id = bed_id!;
-        beds[+bed_id!].crop = crop!;
-
-        return [...beds];
-      });
+    if (plant) {
+      setPlant(plant);
     }
-
-    setDesired([null, null]);
   };
 
-  const handleSubmit = () => {
-    onSubmit(beds);
-    setBeds(
-      Array<BedPlant>(10)
-        .fill({bed_id: "", crop: ""})
-        .map((item) => ({...item}))
-    );
-    setDesired([null, null]);
+  const handleSubmit = (plant: BedPlant) => {
+    onSubmit(plant);
     onClose();
   };
-
-  useEffect(() => {
-    if (opened) {
-      const t = setTimeout(handleSubmit, 5_000);
-
-      return () => {
-        clearTimeout(t);
-      };
-    }
-  }, [opened]);
 
   return (
     <Modal isOpen={opened} className={cls.modal}>
@@ -112,23 +73,19 @@ export const PlantModal = ({onClose, onSubmit, opened}: Props) => {
             <Back />
           </div>
           <span>Засеивание</span>
-          <div onClick={handleTogglePause}>{paused ? <Play /> : <Pause />}</div>
+          <div onClick={() => setPaused((state) => !state)}>
+            {paused ? <Play /> : <Pause />}
+          </div>
         </div>
 
         <div className={cls.content}>
-          {options.map(([key, value], index) => {
-            return (
-              <div
-                key={index}
-                data-crop={key}
-                data-bed-id={index}
-                onClick={handleDesiredPlantClick}
-                className={cls["bed-desired-plant"]}
-              >
-                {value}
-              </div>
-            );
-          })}
+          <div
+            data-crop={desiredCrop[0]}
+            onClick={handleDesiredPlantClick}
+            className={cls["bed-desired-plant"]}
+          >
+            {desiredCrop[1]}
+          </div>
         </div>
 
         <div className={cls.footer}>
