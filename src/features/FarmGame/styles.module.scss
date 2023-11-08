@@ -99,3 +99,28 @@
     }
   }
 }
+
+.bed {
+  cursor: pointer;
+
+  &.success {
+    filter: drop-shadow(2px 2px 0px #0dff11) drop-shadow(-2px 2px 0px #0dff11)
+    drop-shadow(-2px -2px 0px #0dff11) drop-shadow(2px -2px 0px #0dff11);
+  }
+
+  &.wrong {
+    filter: drop-shadow(2px 2px 0px red) drop-shadow(-2px 2px 0px red)
+    drop-shadow(-2px -2px 0px red) drop-shadow(2px -2px 0px red);
+  }
+
+  g {
+    display: none;
+  }
+
+  &.sprouts {
+    g {
+      display: unset;
+    }
+  }
+}
+
