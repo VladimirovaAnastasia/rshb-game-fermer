@@ -1,1 +1,1 @@
-export {PlantModal} from "./ui/PlantModal/PlantModal";
+export { PlantModal } from './ui/PlantModal/PlantModal';

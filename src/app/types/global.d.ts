@@ -17,7 +17,7 @@ declare module '*.svg' {
     const uri: string;
 
     export default uri;
-    export {ReactComponent};
+    export { ReactComponent };
 }
 
 declare const __IS_DEV__: boolean;

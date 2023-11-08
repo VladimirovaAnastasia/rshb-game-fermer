@@ -1,0 +1,70 @@
+.icon {
+  height: 100%;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  display: flex;
+  box-sizing: content-box;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  //border-radius: units.$border-radius-m;
+  cursor: pointer;
+
+//  svg {
+//    width: 16px;
+//    height: 16px;
+//    fill: colors.$neutral-50;
+//  }
+//
+//  @include responsive.media-up(responsive.$tablet) {
+//    svg {
+//      width: 20px;
+//      height: 20px;
+//    }
+//  }
+//
+//  @include responsive.media-up(responsive.$desktop) {
+//    height: fit-content;
+//    top: 50%;
+//    transform: translateY(-50%);
+//
+//    svg {
+//      width: 20px;
+//      height: 20px;
+//    }
+//  }
+//
+//  @include responsive.media-up(responsive.$xl) {
+//    svg {
+//      width: 24px;
+//      height: 24px;
+//    }
+//  }
+//
+//  &:not([disabled]) {
+//    @include mixins.hover {
+//      svg {
+//        fill: colors.$neutral-10;
+//      }
+//    }
+//  }
+//
+//  @include mixins.focus {
+//    svg {
+//      fill: colors.$neutral-10;
+//    }
+//  }
+//
+//  &:disabled {
+//    cursor: default;
+//  }
+}
+
+.hidden {
+  > svg {
+    fill: transparent;
+  }
+}

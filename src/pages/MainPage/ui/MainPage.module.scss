@@ -1,4 +1,5 @@
 .MainPage {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,14 +11,66 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  z-index: 2;
 }
 
 .logo {
+  position: relative;
   width: 320px;
   height: 164px;
+  z-index: 2;
 }
 
 .fermer {
   width: 282px;
   height: 282px;
+}
+
+
+/* keyframes for animation;  simple 0 to 360 */
+@-webkit-keyframes spin {
+  from { -webkit-transform: rotate(0deg); }
+  to { -webkit-transform: rotate(360deg); }
+}
+
+@-moz-keyframes spin {
+  from { -moz-transform: rotate(0deg); }
+  to { -moz-transform: rotate(360deg); }
+}
+
+@-ms-keyframes spin {
+  from { -ms-transform: rotate(0deg); }
+  to { -ms-transform: rotate(360deg); }
+}
+
+
+.game-logo {
+  position: relative;
+}
+
+.rays	{
+  position: absolute;
+  top: -125px;
+  right: -80px;
+  width: 490px;
+  height: 490px;
+  z-index: 1;
+
+  /* webkit chrome, safari, mobile */
+  -webkit-animation-name: spin;
+  -webkit-animation-duration: 90000ms; /* 40 seconds */
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+
+  /* mozilla ff */
+  -moz-animation-name: spin;
+  -moz-animation-duration: 90000ms; /* 40 seconds */
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-timing-function: linear;
+
+  /* microsoft ie */
+  -ms-animation-name: spin;
+  -ms-animation-duration: 90000ms; /* 40 seconds */
+  -ms-animation-iteration-count: infinite;
+  -ms-animation-timing-function: linear;
 }

@@ -1,0 +1,162 @@
+.container {
+  position: relative;
+  display: flex;
+}
+
+.label {
+  position: relative;
+  height: 100%;
+  flex-grow: 1;
+  cursor: text;
+
+  &.disabled {
+    cursor: default;
+  }
+
+  &.light-ellipsis::after {
+    width: 92px;
+    // INFO: При изменении масштаба страницы градиент начинает перекрывать границу поля ввода,
+    // возникает это из-за появления дробных значений пикселей при изменении масштаба.
+    // Оптимальное значение отступа блока с градиентом от краев - половина border-radius (6px)
+    top: 3px;
+    right: 3px;
+    bottom: 3px;
+    height: auto;
+  }
+
+  &.gray-ellipsis::after {
+    width: 92px;
+    // INFO: При изменении масштаба страницы градиент начинает перекрывать границу поля ввода,
+    // возникает это из-за появления дробных значений пикселей при изменении масштаба.
+    // Оптимальное значение отступа блока с градиентом от краев - половина border-radius (6px)
+    top: 3px;
+    right: 3px;
+    bottom: 3px;
+    height: auto;
+  }
+}
+
+.label-inner-container {
+  position: relative;
+  display: block;
+  height: 100%;
+}
+
+.label-text {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  left: 20px;
+  overflow: hidden;
+  color: gray;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  transform: translateY(-50%);
+  transition: all 0.2s ease 0s;
+  white-space: nowrap;
+
+  &.floated {
+    top: 8px;
+    font-size: 10px;
+    line-height: 14px;
+    transform: none;
+    right: 16px;
+  }
+
+  &.disabled {
+    color: gray;
+  }
+}
+
+.input {
+  width: 100%;
+  height: 60px;
+  box-sizing: border-box;
+  padding: 0 20px;
+  border: 1px solid #464d53;
+  background-color: #ffffff;
+  border-radius: 12px;
+  color: black;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  outline: none;
+  transition: border-color 0.2s ease 0s;
+
+
+  &:focus {
+    border-color: black;
+  }
+
+  &.error {
+    border-color: red;
+  }
+
+  &::placeholder {
+    color: gray;
+    opacity: 1;
+  }
+
+  &:disabled {
+    border-color: gray;
+    background-color: #ffffff;
+    color: #000000;
+    opacity: 1;
+    -webkit-text-fill-color: gray;
+  }
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    border-radius: 10px;
+    box-shadow: 0 0 0 1000px #ffffff inset;
+  }
+
+  &.labeled {
+    padding: 26px 20px 8px;
+
+  }
+}
+
+.left-icon {
+  left: 0;
+  padding: 0 16px 0 20px;
+}
+
+.right-icon {
+  right: 0;
+  padding: 0 20px 0 16px;
+}
+
+.hint {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translateY(calc(100% + 2px));
+
+  &.disabled {
+    color: grey;
+  }
+}
+
+.with-left-icon {
+  .label-text {
+    left: 44px;
+  }
+
+  .input {
+    padding-left: 44px;
+
+  }
+}
+
+.with-right-icon {
+  .input {
+    padding-right: 44px;
+  }
+
+  .label-text.floated {
+    right: 44px;
+  }
+}

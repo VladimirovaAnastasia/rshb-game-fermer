@@ -3,10 +3,10 @@ import { userReducer } from 'entities/User';
 import { $api } from 'shared/api/api';
 import { NavigateOptions } from 'react-router';
 import { CombinedState, Reducer } from 'redux';
+import { bedsReducer } from 'entities/Bed';
+import { tasksReducer } from 'entities/Task';
 import { StateSchema, ThunkExtraArg } from './StateSchema';
 import { createReducerManager } from './reducerManager';
-import {bedsReducer} from "entities/Bed";
-import {tasksReducer} from "entities/Task";
 
 export function createReduxStore(
     initialState?: StateSchema,
@@ -14,10 +14,10 @@ export function createReduxStore(
     navigate?: (to: any, options?: NavigateOptions) => void,
 ) {
     const rootReducers: ReducersMapObject<StateSchema> = {
-      ...asyncReducers,
-      user: userReducer,
-      beds: bedsReducer,
-      tasks: tasksReducer,
+        ...asyncReducers,
+        user: userReducer,
+        beds: bedsReducer,
+        tasks: tasksReducer,
     };
 
     const reducerManager = createReducerManager(rootReducers);

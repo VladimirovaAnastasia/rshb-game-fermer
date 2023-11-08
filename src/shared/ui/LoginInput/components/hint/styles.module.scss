@@ -1,0 +1,10 @@
+.hint {
+  color: gray;
+  cursor: default;
+  word-wrap: break-word;
+  width: 100%;
+
+  &.error {
+    color: red;
+  }
+}

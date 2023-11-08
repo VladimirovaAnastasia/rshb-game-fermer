@@ -1,1 +1,1 @@
-declare module "react-svgmt";
+declare module 'react-svgmt';

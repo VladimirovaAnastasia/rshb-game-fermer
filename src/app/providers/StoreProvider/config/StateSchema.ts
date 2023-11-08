@@ -1,18 +1,18 @@
-import {UserSchema} from "entities/User";
-import {LoginSchema} from "features/AuthByUsername";
+import { UserSchema } from 'entities/User';
+import { LoginSchema } from 'features/AuthByUsername';
 import {
-  AnyAction,
-  EnhancedStore,
-  Reducer,
-  ReducersMapObject,
-} from "@reduxjs/toolkit";
-import {CombinedState} from "redux";
-import {ProfileSchema} from "entities/Profile";
-import {AxiosInstance} from "axios";
+    AnyAction,
+    EnhancedStore,
+    Reducer,
+    ReducersMapObject,
+} from '@reduxjs/toolkit';
+import { CombinedState } from 'redux';
+import { ProfileSchema } from 'entities/Profile';
+import { AxiosInstance } from 'axios';
 // import { To } from 'history';
-import {NavigateOptions} from "react-router";
-import {BedsSchema} from "entities/Bed";
-import {TasksSchema} from "entities/Task";
+import { NavigateOptions } from 'react-router';
+import { BedsSchema } from 'entities/Bed';
+import { TasksSchema } from 'entities/Task';
 
 export interface StateSchema {
   user: UserSchema;

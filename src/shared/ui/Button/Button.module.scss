@@ -1,8 +1,9 @@
 .Button {
     cursor: pointer;
     color: var(--green-light);
-    padding: 22px 80px;
+    padding: 20px 0;
     border-radius: 40px;
+    width: 343px;
 }
 
 .clear {
@@ -39,9 +40,8 @@
 }
 
 .backgroundInverted {
-    background: var(--inverted-bg-color);
-    color: var(--inverted-primary-color);
-    border: none;
+    background: var(--green-light);
+    color: var(--light);
 }
 
 .square {

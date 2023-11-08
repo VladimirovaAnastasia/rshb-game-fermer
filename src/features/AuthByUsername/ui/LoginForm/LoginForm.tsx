@@ -1,12 +1,12 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
-import { Input } from 'shared/ui/Input/Input';
 import { useSelector } from 'react-redux';
-import { memo, useCallback } from 'react';
+import { ChangeEvent, memo, useCallback } from 'react';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { LoginInput } from 'shared/ui/LoginInput/LoginInput';
 import { getLoginUsername } from '../../model/selectors/getLoginUsername/getLoginUsername';
 import { getLoginPassword } from '../../model/selectors/getLoginPassword/getLoginPassword';
 import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading/getLoginIsLoading';
@@ -32,12 +32,12 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
     const isLoading = useSelector(getLoginIsLoading);
     const error = useSelector(getLoginError);
 
-    const onChangeUsername = useCallback((value: string) => {
-        dispatch(loginActions.setUsername(value));
+    const onChangeUsername = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+        dispatch(loginActions.setUsername(event.target.value));
     }, [dispatch]);
 
-    const onChangePassword = useCallback((value: string) => {
-        dispatch(loginActions.setPassword(value));
+    const onChangePassword = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+        dispatch(loginActions.setPassword(event.target.value));
     }, [dispatch]);
 
     const onLoginClick = useCallback(async () => {
@@ -48,40 +48,39 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
     }, [onSuccess, dispatch, password, username]);
 
     return (
-      <DynamicModuleLoader removeAfterUnmount reducers={initialReducers}>
-        <div className={classNames(cls.LoginForm, {}, [className])}>
-          <Text title={t("Форма авторизации")} />
-          {error && (
-            <Text
-              text={t("Вы ввели неверный логин или пароль")}
-              theme={TextTheme.ERROR}
-            />
-          )}
-          <Input
-            autofocus
-            type="text"
-            className={cls.input}
-            placeholder={t("Введите username")}
-            onChange={onChangeUsername}
-            value={username}
-          />
-          <Input
-            type="text"
-            className={cls.input}
-            placeholder={t("Введите пароль")}
-            onChange={onChangePassword}
-            value={password}
-          />
-          <Button
-            theme={ButtonTheme.BACKGROUND_INVERTED}
-            className={cls.loginBtn}
-            onClick={onLoginClick}
-            disabled={isLoading}
-          >
-            {t("Войти")}
-          </Button>
-        </div>
-      </DynamicModuleLoader>
+        <DynamicModuleLoader removeAfterUnmount reducers={initialReducers}>
+            <div className={classNames(cls.LoginForm, {}, [className])}>
+                <Text className={cls.title} title={t('Вход в игру')} />
+                {error && (
+                    <Text
+                        text={t('Вы ввели неверный логин или пароль')}
+                        theme={TextTheme.ERROR}
+                    />
+                )}
+                <LoginInput
+                    type="text"
+                    className={cls.input}
+                    label={t('Введите имя')}
+                    value={username}
+                    onChange={onChangeUsername}
+                />
+                <LoginInput
+                    type="email"
+                    className={cls.input}
+                    label={t('Введите пароль')}
+                    value={password}
+                    onChange={onChangePassword}
+                />
+                <Button
+                    theme={ButtonTheme.BACKGROUND_INVERTED}
+                    className={cls.loginBtn}
+                    onClick={onLoginClick}
+                    disabled={isLoading}
+                >
+                    {t('Войти')}
+                </Button>
+            </div>
+        </DynamicModuleLoader>
     );
 });
 
