@@ -183,6 +183,42 @@ server.post('/tasks/complete', (req, res) => {
     }
 });
 
+server.post('/tasks/fail', (req, res) => {
+    try {
+        const {task_id} = req.body;
+
+        const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));
+        const {tasks = [], users = []} = db;
+
+        // TODO: Это небезопасно, рест открытый и кто угодно может намайнить себе сколько угодно денег
+        const failedTaskIndex = tasks
+            .map(task => ({...task, active: (new Date() - new Date(task.last_activity_time)) > (12 * 60 * 60 * 1000)}))
+            .findIndex(task => task.id === task_id && !task.completed);
+
+        if (failedTaskIndex !== -1) {
+            tasks[failedTaskIndex].last_activity_time = new Date().toISOString();
+            const userIndex = users.findIndex(
+                (user) => user.id === tasks[failedTaskIndex].user_id,
+            );
+            db.tasks = tasks;
+
+
+            const tasksFiltered = tasks.filter(
+                (tasks) => tasks.user_id === users[userIndex].id,
+            ).map(task => ({...task, active: (new Date() - new Date(task.last_activity_time)) > (12 * 60 * 60 * 1000)}));
+
+            fs.writeFileSync(path.resolve(__dirname, 'db.json'), JSON.stringify(db, null, 2));
+
+            return res.json(tasksFiltered)
+        }
+
+        return res.status(403).json({message: 'Task not found'});
+    } catch (e) {
+        console.log(e);
+        return res.status(500).json({message: e.message});
+    }
+});
+
 // Получение данных пользователя
 server.get('/user', (req, res) => {
     try {
