@@ -6,6 +6,14 @@
 @import "themes/orange";
 @import "themes/green";
 
+body {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    &::-webkit-scrollbar {
+        display: none; /* Chrome, Safari and Opera */
+    }
+}
+
 .app,
 .app_modal {
     font: var(--font-m);
@@ -13,7 +21,6 @@
 }
 
 .app {
-    background: var(--bg-color);
     min-height: 100vh;
 }
 
