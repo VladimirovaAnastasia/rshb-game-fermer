@@ -5,6 +5,7 @@ import { GameMenu } from 'widgets/GameLyaout/ui/GameMenu';
 import { useLocation } from 'react-router-dom';
 import { gameRoutes } from 'widgets/GameLyaout/model/items';
 import cls from './GameLayout.module.scss';
+import {GameDialog} from "widgets/GameDialog";
 
 interface GameHeaderProps {
     className?: string;
@@ -22,7 +23,10 @@ export const GameLayout = memo(({ children, className }: GameHeaderProps) => {
         <div className={classNames(cls.GameLayout, {}, [className])}>
             <GameHeader theme={gameRoutes[location.pathname].headerTheme} />
             {children}
-            <GameMenu />
+            <div className={cls['game-bottom']} >
+                <GameMenu />
+                <GameDialog />
+            </div>
         </div>
     );
 });

@@ -1,0 +1,27 @@
+.MessageCard {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font: var(--font-l);
+    color: var(--light);
+    background: var(--dark);
+    width: 300px;
+    border-radius: 30px;
+    padding: 20px;
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.text {
+    font: var(--font-size-m);
+    line-height: var(--font-line-m);
+    font-weight: var(--font-bold);
+}
+
+.close-icon {
+    position: absolute;
+    right: -17px;
+    top: -20px;
+    cursor: pointer;
+}
