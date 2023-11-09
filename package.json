@@ -100,5 +100,13 @@
         "preset": "iPhone 7"
       }
     }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && yarn typescript:check"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "yarn lint:ts:fix"
   }
 }
