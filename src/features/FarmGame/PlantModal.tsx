@@ -12,6 +12,9 @@ import { ReactComponent as Flower } from 'shared/assets/images/farm/flower-icon.
 import { ReactComponent as Wheat } from 'shared/assets/images/farm/wheat-icon.svg';
 import { ReactComponent as Bed } from 'shared/assets/images/game-1/bed.svg';
 import { classNames } from 'shared/lib/classNames/classNames';
+import coinSound from 'shared/assets/sounds/coins.mp3';
+import useSound from 'use-sound';
+import { ReactComponent as CoinIcon } from 'shared/assets/icons/coin-16-16.svg';
 import cls from './PlantModal.module.scss';
 
 interface Props {
@@ -48,9 +51,11 @@ export const PlantModal = ({
         return entries[index];
     }, [opened]);
 
+    const [play] = useSound(coinSound);
+
     const handleSubmit = (plant: BedPlant) => {
         onSubmit(plant);
-        setTimeout(onClose, 1_000);
+        setTimeout(onClose, 2_000);
     };
 
     const handleChangePlant = (item: string | null) => {
@@ -75,6 +80,7 @@ export const PlantModal = ({
     const handleBedDrop = (event: DragEvent<SVGSVGElement>) => {
         if (taskAnswer === 'success') {
             setDoneTask(true);
+            play();
             handleSubmit({
                 crop: plant as string,
                 bed_id: bedId,
@@ -92,13 +98,13 @@ export const PlantModal = ({
     }, [plant, dragged]);
 
     useEffect(
-      () => () => {
-        setDoneTask(false);
-        setDragged(false);
-        setPaused(false);
-        setPlant(null);
-      },
-      [opened]
+        () => () => {
+            setDoneTask(false);
+            setDragged(false);
+            setPaused(false);
+            setPlant(null);
+        },
+        [opened],
     );
 
     return (
@@ -113,6 +119,7 @@ export const PlantModal = ({
                         {paused ? <Play /> : <Pause />}
                     </div>
                 </div>
+                { hasDoneTask && <CoinIcon className={cls.coin} />}
 
                 <div className={cls.content}>
                     <div
