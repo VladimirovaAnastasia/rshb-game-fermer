@@ -91,9 +91,15 @@ export const PlantModal = ({
         return desiredCrop[0] === plant ? 'success' : 'wrong';
     }, [plant, dragged]);
 
-    useEffect(() => () => {
+    useEffect(
+      () => () => {
         setDoneTask(false);
-    }, []);
+        setDragged(false);
+        setPaused(false);
+        setPlant(null);
+      },
+      [opened]
+    );
 
     return (
         <Modal isOpen={opened} className={cls.modal}>
