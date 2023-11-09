@@ -27,7 +27,7 @@ export const StatisticsCard = memo((props: StatisticsCardProps) => {
     return (
         <div className={classNames(cls.Card, {}, [className])}>
             <Icon />
-            {text && <p className={cls.text}>{text}</p>}
+            {!!text && <p className={cls.text}>{text}</p>}
         </div>
     );
 });

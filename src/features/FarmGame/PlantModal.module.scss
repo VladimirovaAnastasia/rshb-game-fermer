@@ -124,8 +124,8 @@
   }
 }
 
-
 .coin {
+  position: absolute;
   width: 64px;
   animation: bounce 2s forwards;
   transform-origin: center bottom;
