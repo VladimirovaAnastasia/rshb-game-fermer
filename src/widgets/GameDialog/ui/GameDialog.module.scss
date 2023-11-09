@@ -2,4 +2,13 @@
     position: fixed;
     bottom: -7px;
     right: 70px;
+
+}
+
+.game-bottom {
+    position: fixed;
+    bottom: 0;
+    height: 200px;
+    width: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(10, 10, 10, 1) 125%)
 }

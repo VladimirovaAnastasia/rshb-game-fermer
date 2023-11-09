@@ -5,6 +5,7 @@ import { NavigateOptions } from 'react-router';
 import { CombinedState, Reducer } from 'redux';
 import { bedsReducer } from 'entities/Bed';
 import { tasksReducer } from 'entities/Task';
+import { surveyReducer } from 'entities/Survey';
 import { StateSchema, ThunkExtraArg } from './StateSchema';
 import { createReducerManager } from './reducerManager';
 
@@ -18,6 +19,7 @@ export function createReduxStore(
         user: userReducer,
         beds: bedsReducer,
         tasks: tasksReducer,
+        survey: surveyReducer,
     };
 
     const reducerManager = createReducerManager(rootReducers);

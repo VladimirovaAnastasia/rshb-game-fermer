@@ -13,11 +13,13 @@ import { AxiosInstance } from 'axios';
 import { NavigateOptions } from 'react-router';
 import { BedsSchema } from 'entities/Bed';
 import { TasksSchema } from 'entities/Task';
+import { SurveysSchema } from 'entities/Survey';
 
 export interface StateSchema {
   user: UserSchema;
   beds: BedsSchema;
   tasks: TasksSchema;
+  survey: SurveysSchema;
 
   // Асинхронные редюсеры
   loginForm?: LoginSchema;

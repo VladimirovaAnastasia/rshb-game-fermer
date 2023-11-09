@@ -26,10 +26,8 @@ export const GameLayout = memo(({ children, className }: GameHeaderProps) => {
         <div className={classNames(cls.GameLayout, {}, [className])}>
             <GameHeader theme={gameRoutes[location.pathname].headerTheme} />
             {children}
-            <div className={cls['game-bottom']}>
-                <GameMenu />
-                <GameDialog />
-            </div>
+            <GameMenu />
+            <GameDialog />
         </div>
     );
 });

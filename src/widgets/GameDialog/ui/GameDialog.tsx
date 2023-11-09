@@ -20,9 +20,14 @@ export const GameDialog = ({ className }: GameDialogProps) => {
     }
 
     return (
-        <div className={classNames(cls.GameDialog, {}, [className])}>
-            <MessageCard text="Добро пожаловать обратно! Сегодня у нас на ферме 5 новых заданий!" onClose={handleCloseClick} />
-            <img src={FarmerGirl} alt="farmer-girl-helper" />
+        <div className={cls['game-bottom']}>
+            <div className={classNames(cls.GameDialog, {}, [className])}>
+                <MessageCard
+                    text="Добро пожаловать обратно! Сегодня у нас на ферме 5 новых заданий!"
+                    onClose={handleCloseClick}
+                />
+                <img src={FarmerGirl} alt="farmer-girl-helper" />
+            </div>
         </div>
     );
 };

@@ -4,7 +4,7 @@
       "id": "1",
       "username": "admin",
       "password": "123",
-      "ballance": 770,
+      "ballance": 870,
       "signup_date": "Sun Nov 05 2023 15:47:05 GMT+0300 (Moscow Standard Time)"
     }
   ],
@@ -21,7 +21,35 @@
       "user_id": "1",
       "cost": 100,
       "type": "finance_genius",
-      "last_activity_time": "Sun Nov 05 2023 15:47:05 GMT+0300 (Moscow Standard Time)"
+      "last_activity_time": "2023-11-09T21:08:45.246Z"
+    }
+  ],
+  "surveys": [
+    {
+      "id": "0",
+      "task_id": "1",
+      "questions": [
+        {
+          "question": "Иностранные деньги",
+          "answer": "Валюта"
+        },
+        {
+          "question": "Когда берешь деньги в долг у банка",
+          "answer": "Кредит"
+        },
+        {
+          "question": "Обесценивание денег",
+          "answer": "Инфляция"
+        },
+        {
+          "question": "Когда банк платит проценты от вложенных денег",
+          "answer": "Депозит"
+        },
+        {
+          "question": "Вложение денег с целью приумножения",
+          "answer": "Инвестиции"
+        }
+      ]
     }
   ],
   "beds": [

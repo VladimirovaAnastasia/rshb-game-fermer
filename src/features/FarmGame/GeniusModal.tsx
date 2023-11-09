@@ -1,20 +1,45 @@
 import { Modal } from 'shared/ui/Modal/Modal';
+import cn from 'classnames';
 import { ReactComponent as Back } from 'shared/assets/images/farm/back.svg';
 import { ReactComponent as Pause } from 'shared/assets/images/farm/pause.svg';
 import { ReactComponent as Play } from 'shared/assets/images/farm/play.svg';
-import { useEffect, useMemo } from 'react';
-import { useTimer } from './useTimer';
+import {
+    MouseEvent, useEffect, useMemo, useState,
+} from 'react';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { fetchSurveyData } from 'entities/Survey/model/services/fetchSurveyData/fetchSurveyData';
+import { useSelector } from 'react-redux';
+import { getSurveyData } from 'entities/Survey';
 import cls from './GeniusModal.module.scss';
+import { useTimer } from './useTimer';
 
 interface Props {
   opened: boolean;
+  taskId: string;
   onClose: () => void;
   onSubmit: (completed: boolean) => void;
 }
 
+interface InnerQuestion {
+  question: string;
+  answer: string;
+  index: number;
+  state: 'correct' | 'incorrect' | 'empty';
+}
+
+interface InnerAnswer {
+  answer: string;
+  index: number;
+}
+
 const TIMEOUT = 60_000; // minute
 
-export const GeniusModal = ({ onClose, opened, onSubmit }: Props) => {
+export const GeniusModal = ({
+    onClose, opened, taskId, onSubmit,
+}: Props) => {
+    const dispatch = useAppDispatch();
+    const survey = useSelector(getSurveyData);
+
     const {
         elapsedTime, isRunning, handlePause, handleReset, handleStart,
     } = useTimer();
@@ -28,14 +53,79 @@ export const GeniusModal = ({ onClose, opened, onSubmit }: Props) => {
 
     useEffect(() => {
         handleReset();
-        handleStart();
+        if (opened) {
+            handleStart();
+        } else {
+            handlePause();
+        }
     }, [opened]);
 
     useEffect(() => {
+        dispatch(fetchSurveyData(taskId));
+    }, []);
+
+    const [questions, setQuestions] = useState<InnerQuestion[]>();
+    const [answers, setAnswers] = useState<InnerAnswer[]>();
+    const [selectedAnswerIndex, setSelectedAnswerIndex] = useState<number>();
+
+    useEffect(() => {
+        const questions = survey?.questions.map((question) => question.question);
+        const answers = survey?.questions.map((question) => question.answer);
+
+        setQuestions(
+            questions?.map<InnerQuestion>((item, index) => ({
+                question: item,
+                answer: answers![index],
+                index,
+                state: 'empty',
+            })),
+        );
+
+        setAnswers(
+            answers?.map<InnerAnswer>((item, index) => ({
+                answer: item,
+                index,
+            })),
+        );
+    }, [survey]);
+
+    const handleQuestionClick = (event: MouseEvent<HTMLDivElement>) => {
+        if (selectedAnswerIndex === undefined) {
+            return;
+        }
+
+        const index = event.currentTarget.getAttribute('data-index');
+        if (index && selectedAnswerIndex === +index) {
+            setQuestions((questions) => questions?.map((question, i) => ({
+                ...question,
+                state: i === +index ? 'correct' : question.state,
+            })));
+        } else {
+        }
+
+        setSelectedAnswerIndex(undefined);
+    };
+
+    const handleAnswerClick = (event: MouseEvent<HTMLDivElement>) => {
+        const index = event.currentTarget.getAttribute('data-index');
+
+        if (index) {
+            setSelectedAnswerIndex(+index);
+        }
+    };
+
+    useEffect(() => {
+        const allCorrect = questions?.every((item) => item.state === 'correct');
+
+        if (allCorrect) {
+            onSubmit(true);
+            return;
+        }
+
         if (isOver) {
             onSubmit(false);
         }
-    }, [isOver]);
+    }, [isOver, questions]);
 
     return (
         <Modal isOpen={opened} className={cls.modal}>
@@ -44,7 +134,7 @@ export const GeniusModal = ({ onClose, opened, onSubmit }: Props) => {
                     <div onClick={onClose}>
                         <Back />
                     </div>
-                    <span>Засеивание</span>
+                    <span>Я финансовый гений!</span>
                     <div
                         onClick={() => (isRunning ? handlePause() : handleStart())}
                         style={{
@@ -57,7 +147,53 @@ export const GeniusModal = ({ onClose, opened, onSubmit }: Props) => {
                     </div>
                 </div>
 
-                <div className={cls.content} />
+                <div className={cls.content}>
+                    <span>Соедини термины с их правильными определениями:</span>
+
+                    {survey?.questions && (
+                        <>
+                            <div className={cls.questions}>
+                                {questions?.map((question, index) => (
+                                    <div className={cls.item} key={question.question}>
+                                        <span>{question.question}</span>
+                                        <span
+                                            className={cn(cls['answers-badge'], {
+                                                [cls['answers-badge__green']]:
+                          question.state === 'correct',
+                                                [cls['answers-badge__red']]:
+                          question.state === 'incorrect',
+                                                [cls['answers-badge__empty']]:
+                          question.state === 'empty',
+                                            })}
+                                            data-index={index}
+                                            onClick={handleQuestionClick}
+                                        >
+                                            {question.answer}
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <div className={cls.answers}>
+                                {answers?.map((answer, index) => (
+                                    <span
+                                        className={cn(cls['answers-badge'], {
+                                            [cls['answers-badge__light-green']]:
+                        questions?.[index].state === 'correct',
+                                            [cls['answers-badge__light-red']]:
+                        questions?.[index].state === 'incorrect',
+                                        })}
+                                        onClick={handleAnswerClick}
+                                        data-index={index}
+                                        key={answer.answer}
+                                    >
+                                        {answer.answer}
+                                    </span>
+                                ))}
+                            </div>
+                        </>
+                    )}
+                </div>
             </div>
         </Modal>
     );

@@ -103,20 +103,28 @@ const FarmPage = () => {
         };
     }, [beds]);
 
-    const handleCompleteTask = useCallback(() => {
-        const task = tasks.find((task) => task.type === 'plant');
+    const handleCompleteTask = useCallback(
+        (type: string) => {
+            const task = tasks.find((task) => task.type === type);
 
-        if (task && user) {
-            dispatch(completeTask({ task_id: task.id }))
-                .unwrap()
-                .then(() => {
-                    dispatch(fetchUserData(user?.id));
-                });
-        }
-    }, [tasks]);
+            if (task && user) {
+                dispatch(completeTask({ task_id: task.id }))
+                    .unwrap()
+                    .then(() => {
+                        dispatch(fetchUserData(user?.id));
+                    });
+            }
+        },
+        [tasks],
+    );
 
     const plantTask = useMemo(
         () => tasks.find((task) => task.type === 'plant'),
+        [tasks],
+    );
+
+    const geniusTask = useMemo(
+        () => tasks.find((task) => task.type === 'finance_genius'),
         [tasks],
     );
 
@@ -137,8 +145,8 @@ const FarmPage = () => {
             ...(toPlant.bed_id === bed.bed_id ? { crop: bed.crop } : {}),
         }));
         dispatch(plantBeds({ user_id: user?.id!, beds: planted_beds }));
-    // TODO: завершить таск
-    // handleCompleteTask()
+        // TODO: завершить таск
+        // handleCompleteTask("plant")
     };
 
     const [openedGeniusModal, setOpenedGeniusModal] = useState(true);
@@ -147,7 +155,12 @@ const FarmPage = () => {
         setOpenedGeniusModal(false);
     };
 
-    const handleSubmitGeniusModal = (success: boolean) => {};
+    const handleSubmitGeniusModal = (success: boolean) => {
+        if (success) {
+            handleCompleteTask('finance_genius');
+        }
+        setOpenedGeniusModal(false);
+    };
 
     return (
         <div className={cls.FarmPage}>
@@ -185,9 +198,10 @@ const FarmPage = () => {
                     })}
                 </>
             )}
-            {geniusActivity && (
+            {geniusActivity && geniusTask && (
                 <GeniusModal
                     opened={openedGeniusModal}
+                    taskId={geniusTask?.id}
                     onClose={handleCloseGeniusModal}
                     onSubmit={handleSubmitGeniusModal}
                 />
