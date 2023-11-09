@@ -6,6 +6,8 @@ import { useLocation } from 'react-router-dom';
 import { gameRoutes } from 'widgets/GameLyaout/model/items';
 import { GameDialog } from 'widgets/GameDialog';
 import cls from './GameLayout.module.scss';
+import {useSelector} from "react-redux";
+import {getUserAuthData} from "entities/User";
 
 interface GameHeaderProps {
     className?: string;
@@ -14,8 +16,9 @@ interface GameHeaderProps {
 
 export const GameLayout = memo(({ children, className }: GameHeaderProps) => {
     const location = useLocation();
+    const isAuth = useSelector(getUserAuthData);
 
-    if (!Object.keys(gameRoutes).includes(location.pathname)) {
+    if (!isAuth || !Object.keys(gameRoutes).includes(location.pathname)) {
         return <>{children}</>;
     }
 

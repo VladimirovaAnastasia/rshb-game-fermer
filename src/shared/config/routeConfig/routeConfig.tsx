@@ -55,10 +55,12 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.RATING]: {
         path: RoutePath.rating,
         element: <RatingPage />,
+        authOnly: true,
     },
     [AppRoutes.SHOP]: {
         path: RoutePath.shop,
         element: <ShopPage />,
+        authOnly: true,
     },
     // last
     [AppRoutes.NOT_FOUND]: {
