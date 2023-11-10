@@ -157,7 +157,7 @@ const FarmPage = () => {
 
     const handleSubmitGeniusModal = (success: boolean) => {
         if (success) {
-            handleCompleteTask('finance_genius');
+          //handleCompleteTask('finance_genius');
         }
         setOpenedGeniusModal(false);
     };
