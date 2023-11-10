@@ -28,3 +28,18 @@
   position: relative;
   top: 40vh;
 }
+
+.not-found {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: var(--dark);
+  align-items: center;
+  justify-content: center;
+  top: 35vh;
+  width: 100%;
+}
+.img {
+  height: 100px;
+}

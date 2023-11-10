@@ -16,7 +16,7 @@ import { getProductsData } from 'entities/Products';
 import { getUserAuthData } from 'entities/User';
 import { Loader } from 'shared/ui/Loader/Loader';
 import { getProductsLoading } from 'entities/Products/model/selectors/getProductsData/getProductsData';
-import { PlantModal } from 'features/FarmGame';
+import NotFound from 'shared/assets/images/not-found.png';
 import { BuyProductModal } from 'features/BuyProduct/BuyProductModal';
 import { fetchUserData } from 'entities/User/model/services/fetchUserData/fetchUserData';
 import cls from './ShopPage.module.scss';
@@ -108,7 +108,7 @@ const ShopPage = ({ className }: ShopPageProps) => {
                         >
                             {isProductsLoading ? <div className={cls.loader}><Loader /></div> : (
                                 <div className={cls.shopCardsList}>
-                                    {itemsList}
+                                    {itemsList?.length === 0 ? <div className={cls['not-found']}><img src={NotFound} alt="not-found" className={cls.img} /><p>Ничего не найдено</p></div> : itemsList}
                                 </div>
                             )}
                         </Tab>
