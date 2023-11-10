@@ -11,4 +11,5 @@ export type Products = Product[];
 export interface ProductsSchema {
     data?: Products;
     isLoading: boolean;
+    isUpdating: boolean;
 }

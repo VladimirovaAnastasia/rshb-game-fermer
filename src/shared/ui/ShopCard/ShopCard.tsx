@@ -8,7 +8,8 @@ interface ShopCardProps {
     text?: string;
     coinsCount?: number;
     href?: string;
-    img: any;
+    img: string;
+    onClick: () => void;
 }
 
 export const ShopCard = memo((props: ShopCardProps) => {
@@ -18,10 +19,11 @@ export const ShopCard = memo((props: ShopCardProps) => {
         coinsCount,
         href,
         img,
+        onClick,
     } = props;
 
     return (
-        <div className={classNames(cls.ShopCard, { [cls.active]: !!href })}>
+        <div className={classNames(cls.ShopCard, { [cls.active]: !!href })} onClick={onClick}>
             <img src={`http://localhost:8000/images/products?image=${img}`} className={cls.img} />
             <div className={cls.info}>
                 {text && <p className={cls.text}>{text}</p>}

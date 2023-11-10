@@ -16,6 +16,9 @@ import { getProductsData } from 'entities/Products';
 import { getUserAuthData } from 'entities/User';
 import { Loader } from 'shared/ui/Loader/Loader';
 import { getProductsLoading } from 'entities/Products/model/selectors/getProductsData/getProductsData';
+import { PlantModal } from 'features/FarmGame';
+import { BuyProductModal } from 'features/BuyProduct/BuyProductModal';
+import { fetchUserData } from 'entities/User/model/services/fetchUserData/fetchUserData';
 import cls from './ShopPage.module.scss';
 
 const reducers: ReducersList = {
@@ -43,7 +46,7 @@ const ShopPage = ({ className }: ShopPageProps) => {
     const dispatch = useAppDispatch();
 
     const [activeTabName, setActiveTabName] = useState('all');
-
+    const [productId, setProductId] = useState('');
     const handleChangeActiveTabByName = (tabName: string) => {
         setActiveTabName(tabName);
     };
@@ -51,6 +54,17 @@ const ShopPage = ({ className }: ShopPageProps) => {
     const user = useSelector(getUserAuthData);
     const products = useSelector(getProductsData);
     const isProductsLoading = useSelector(getProductsLoading);
+
+    const handleClickShopCard = (productId: string) => {
+        setProductId(productId);
+    };
+    const handleCloseBuyProductModal = () => {
+        setProductId('');
+    };
+
+    const handleSubmitBuyProduct = () => {
+        dispatch(fetchUserData(user?.id || ''));
+    };
 
     useEffect(() => {
         dispatch(fetchProductsData({ user_id: user?.id || '', filter: activeTabName }));
@@ -63,11 +77,18 @@ const ShopPage = ({ className }: ShopPageProps) => {
             coinsCount={item.price}
             href={item?.content}
             img={item.picture}
+            onClick={() => handleClickShopCard(item.id)}
         />
     )), [products]);
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
+            <BuyProductModal
+                onClose={handleCloseBuyProductModal}
+                onSubmit={handleSubmitBuyProduct}
+                opened={!!productId}
+                product={products?.find((item) => item.id === productId)}
+            />
             <div className={classNames(cls.Shop, {}, [className])}>
                 <Heading level={1} className={cls.shopHeading}>Магазин</Heading>
                 <Tabs className={cls.tabs}>

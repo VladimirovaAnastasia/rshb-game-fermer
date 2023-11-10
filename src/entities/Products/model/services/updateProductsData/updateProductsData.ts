@@ -4,13 +4,13 @@ import { Products } from 'entities/Products';
 
 export const updateProductsData = createAsyncThunk<
   Products,
-  string,
+  {user_id: string, product_id: string},
   ThunkConfig<string>
->('user/updateProductsData', async (user_id, thunkApi) => {
+>('user/updateProductsData', async ({ user_id, product_id }, thunkApi) => {
     const { extra, rejectWithValue } = thunkApi;
 
     try {
-        const response = await extra.api.post<Products>(`/products?user_id=${user_id}`);
+        const response = await extra.api.post<Products>(`/products?user_id=${user_id}&product_id=${product_id}`);
 
         if (!response.data) {
             throw new Error();

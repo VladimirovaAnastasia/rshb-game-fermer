@@ -6,6 +6,7 @@ import { ProductsSchema, Products } from '../types/Products';
 const initialState: ProductsSchema = {
     data: [],
     isLoading: false,
+    isUpdating: false,
 };
 
 export const productsSlice = createSlice({
@@ -28,17 +29,17 @@ export const productsSlice = createSlice({
                 state.isLoading = false;
             })
             .addCase(updateProductsData.pending, (state) => {
-                state.isLoading = true;
+                state.isUpdating = true;
             })
             .addCase(
                 updateProductsData.fulfilled,
                 (state, action: PayloadAction<Products>) => {
                     state.data = action.payload;
-                    state.isLoading = false;
+                    state.isUpdating = false;
                 },
             )
             .addCase(updateProductsData.rejected, (state, action) => {
-                state.isLoading = false;
+                state.isUpdating = false;
             });
     },
 });

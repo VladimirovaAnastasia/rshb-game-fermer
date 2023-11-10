@@ -1,0 +1,101 @@
+.modal {
+  div[class*="content"] {
+    background-color: #182d31;
+    color: white;
+  }
+
+  .root {
+    position: relative;
+    width: 450px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .header {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      font-size: 24px;
+      font-weight: var(--font-bold);
+      margin-bottom: 80px;
+    }
+
+    .content {
+     display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+
+      .text {
+        display: flex;
+        align-items: center;
+        font: var(--font-size-m);
+        line-height: var(--font-line-m);
+        font-weight: var(--font-bold);
+      }
+
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+.coin {
+  position: absolute;
+  width: 64px;
+  right: 20px;
+  animation: bounce 2s forwards;
+  transform-origin: center bottom;
+}
+
+@keyframes bounce {
+  from,
+  33%,
+  to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: translate3d(0, 0, 0);
+  }
+
+  20%,
+  23% {
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: translate3d(0, -200px, 0) scaleY(1.1);
+  }
+
+  50% {
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: translate3d(0, -100px, 0) scaleY(1.05);
+  }
+
+  60% {
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: translate3d(0, 0, 0) scaleY(0.95);
+  }
+
+  70% {
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: translate3d(0, -50px, 0) scaleY(1.02);
+  }
+
+  80% {
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.img {
+  height: 100px;
+  margin-bottom: 20px;
+}
