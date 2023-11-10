@@ -4,38 +4,39 @@
       "id": "1",
       "username": "admin",
       "password": "123",
-      "ballance": 1170,
+      "ballance": 4000,
       "signup_date": "Sun Nov 05 2023 15:47:05 GMT+0300 (Moscow Standard Time)",
       "products": [
-        "0"
+        "0",
+        "1"
       ]
     }
   ],
   "products": [
     {
       "id": "0",
-      "price": 9500,
+      "price": 950,
       "name": "Курс программирования для школьников от школы Алгоритмика",
       "picture": "programming-school.png",
       "content": "PROGRAMMING_COURSE"
     },
     {
       "id": "1",
-      "price": 7000,
+      "price": 700,
       "name": "Урок английского на платформе Skyeng",
       "picture": "english.png",
       "content": "PROGRAMMING_COURSE"
     },
     {
       "id": "2",
-      "price": 300,
+      "price": 30,
       "name": "Фирменный стикерпак “Финансовый фермер” для Телеграм",
       "picture": "stickers.png",
       "content": "https://t.me"
     },
     {
       "id": "3",
-      "price": 3750,
+      "price": 375,
       "name": "День на ферме от “Свое за городом”",
       "picture": "farm.png",
       "content": "PROGRAMMING_COURSE"

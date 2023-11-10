@@ -361,14 +361,30 @@ server.post("/products", (req, res) => {
         let {products} = db;
         const {users} = db;
 
-        const user = users.find(user => user.id === user_id);
+        const userIndex = users.findIndex(user => user.id === user_id);
+        const productIndex = products.findIndex(product => product.id === product_id);
 
-        if (user_id && user && filter === "mine") {
-            products = products.filter((item) => user.products.includes(item.id))
+        if (userIndex !== -1 && productIndex != -1) {
+            if (users[userIndex].ballance < products[productIndex].price) {
+                return res.status(409).json({message: "Not enought money on ballance"})
+            }
+            if (users[userIndex].products.includes(products[productIndex].id)) {
+                return res.status(409).json({message: "Already bought"})
+            }
+
+            users[userIndex].ballance -= products[productIndex].price;
+            users[userIndex].products.push(products[productIndex].id)
+
+            db.users = users;
+
+            fs.writeFileSync(
+                path.resolve(__dirname, "db.json"),
+                JSON.stringify(db, null, 2),
+            );
         }
 
         products.forEach(item => {
-            if (!user.products.includes(item.id)) {
+            if (!users[userIndex].products.includes(item.id)) {
                 delete item.content
             }
         })
@@ -390,7 +406,7 @@ server.get("/images/products", (req, res) => {
 
         const contents = fs.readFileSync(path.resolve(__dirname, `images/products/${image}`));
 
-        if (products) {
+        if (contents) {
             res.setHeader("content-type", "image/png")
             return res.send(contents);
         }
