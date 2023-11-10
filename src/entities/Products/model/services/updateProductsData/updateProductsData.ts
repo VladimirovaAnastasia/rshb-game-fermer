@@ -10,7 +10,10 @@ export const updateProductsData = createAsyncThunk<
     const { extra, rejectWithValue } = thunkApi;
 
     try {
-        const response = await extra.api.post<Products>(`/products?user_id=${user_id}&product_id=${product_id}`);
+        const response = await extra.api.post<Products>(`/products`, {
+          product_id,
+          user_id,
+        });
 
         if (!response.data) {
             throw new Error();

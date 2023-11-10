@@ -334,6 +334,11 @@ server.get("/products", (req, res) => {
             switch (filter) {
                 case "mine": {
                     products = products.filter((item) => user.products.includes(item.id))
+                    break;
+                }
+                case "available": {
+                    products = products.filter((item) => user.ballance > item.price && !user.products.includes(item.id))
+                    break;
                 }
             }
         }

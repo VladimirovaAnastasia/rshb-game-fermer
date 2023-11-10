@@ -4,11 +4,11 @@
       "id": "1",
       "username": "admin",
       "password": "123",
-      "ballance": 3595,
+      "ballance": 2115,
       "signup_date": "Sun Nov 05 2023 15:47:05 GMT+0300 (Moscow Standard Time)",
       "products": [
         "0",
-        "1"
+        "3"
       ]
     }
   ],
@@ -55,7 +55,7 @@
       "user_id": "1",
       "cost": 100,
       "type": "finance_genius",
-      "last_activity_time": "2023-11-10T08:51:50.996Z"
+      "last_activity_time": "2023-11-8T08:51:50.996Z"
     }
   ],
   "surveys": [
@@ -91,68 +91,70 @@
       "id": "0",
       "bed_id": "0",
       "user_id": "1",
-      "plant_time": "2023-11-10T11:32:17.190Z",
+      "plant_time": "2023-11-10T13:01:11.806Z",
       "crop": "carrot"
     },
     {
       "id": "1",
       "bed_id": "1",
       "user_id": "1",
-      "plant_time": "2023-11-10T11:32:17.191Z",
+      "plant_time": "2023-11-10T13:01:11.806Z",
       "crop": "beet"
     },
     {
       "id": "2",
       "bed_id": "2",
       "user_id": "1",
-      "plant_time": "2023-11-10T11:32:17.191Z",
+      "plant_time": "2023-11-10T13:01:11.806Z",
       "crop": "potato"
     },
     {
       "id": "3",
       "bed_id": "3",
       "user_id": "1",
-      "plant_time": "2023-11-10T11:32:17.191Z",
+      "plant_time": "2023-11-10T13:01:11.806Z",
       "crop": "beet"
     },
     {
       "id": "4",
       "bed_id": "4",
       "user_id": "1",
-      "plant_time": "2023-11-10T11:32:17.191Z",
+      "plant_time": "2023-11-10T13:01:11.806Z",
       "crop": "potato"
     },
     {
       "id": "5",
       "bed_id": "5",
       "user_id": "1",
-      "plant_time": "2023-11-10T11:32:17.191Z"
+      "plant_time": "2023-11-10T13:01:11.806Z",
+      "crop": "flowers"
     },
     {
       "id": "6",
       "bed_id": "6",
       "user_id": "1",
-      "plant_time": "2023-11-10T11:32:17.191Z"
+      "plant_time": "2023-11-10T13:01:11.806Z",
+      "crop": "potato"
     },
     {
       "id": "7",
       "bed_id": "7",
       "user_id": "1",
-      "plant_time": "2023-11-10T11:32:17.191Z",
+      "plant_time": "2023-11-10T13:01:11.806Z",
       "crop": "carrot"
     },
     {
       "id": "8",
       "bed_id": "8",
       "user_id": "1",
-      "plant_time": "2023-11-10T11:32:17.191Z",
+      "plant_time": "2023-11-10T13:01:11.806Z",
       "crop": "flowers"
     },
     {
       "id": "9",
       "bed_id": "9",
       "user_id": "1",
-      "plant_time": "2023-11-10T11:32:17.191Z",
+      "plant_time": "2023-11-10T13:01:11.806Z",
       "crop": "beet"
     }
   ],
