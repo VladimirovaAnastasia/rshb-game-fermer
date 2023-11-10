@@ -74,6 +74,10 @@ const ShopPage = ({ className }: ShopPageProps) => {
     };
 
     useEffect(() => {
+        dispatch(fetchUserData(user?.id || ''))
+    }, []);
+
+    useEffect(() => {
         dispatch(fetchProductsData({ user_id: user?.id || '', filter: activeTabName }));
     }, [activeTabName]);
 
