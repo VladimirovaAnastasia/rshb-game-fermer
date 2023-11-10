@@ -12,7 +12,9 @@
     overflow: hidden;
 
     &.active {
-       border: 3px #0dff11 solid;
+        outline: none;
+        border-color: #5abf5c;
+        box-shadow: 0 0 20px #5abf5c;
     }
 
     &:hover {
@@ -23,7 +25,7 @@
 .img {
     height: 50%;
     overflow: hidden;
-    
+
     img {
         height: auto;
         max-width: 100%;
