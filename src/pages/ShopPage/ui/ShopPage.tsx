@@ -3,13 +3,20 @@ import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/Dynamic
 import {
     profileReducer,
 } from 'entities/Profile';
-import {useMemo, useState} from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { ShopCardsList } from 'pages/ShopPage/model/items';
 import { ShopCard } from 'shared/ui/ShopCard/ShopCard';
 import { Heading } from 'shared/ui/Heading/Heading';
+import { Tabs } from 'shared/ui/Tabs/Tabs';
+import { Tab } from 'shared/ui/Tabs/components/tab';
+import { fetchProductsData } from 'entities/Products/model/services/fetchProductsData/fetchProductsData';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { useSelector } from 'react-redux';
+import { getProductsData } from 'entities/Products';
+import { getUserAuthData } from 'entities/User';
+import { Loader } from 'shared/ui/Loader/Loader';
+import { getProductsLoading } from 'entities/Products/model/selectors/getProductsData/getProductsData';
 import cls from './ShopPage.module.scss';
-import {Tabs} from "shared/ui/Tabs/Tabs";
-import {Tab} from "shared/ui/Tabs/components/tab";
 
 const reducers: ReducersList = {
     profile: profileReducer,
@@ -30,28 +37,40 @@ const tabs = [
         title: 'Доступные мне',
         isActive: false,
     },
-]
+];
 
 const ShopPage = ({ className }: ShopPageProps) => {
-    const itemsList = useMemo(() => ShopCardsList.map((item) => (
-        <ShopCard
-            text={item.text}
-            coinsCount={item.coinsCount}
-            img={item.img}
-        />
-    )), []);
+    const dispatch = useAppDispatch();
 
-    const [activeTabName, setActiveTabName] = useState('all')
+    const [activeTabName, setActiveTabName] = useState('all');
 
     const handleChangeActiveTabByName = (tabName: string) => {
-        setActiveTabName(tabName)
-    }
+        setActiveTabName(tabName);
+    };
+
+    const user = useSelector(getUserAuthData);
+    const products = useSelector(getProductsData);
+    const isProductsLoading = useSelector(getProductsLoading);
+
+    useEffect(() => {
+        dispatch(fetchProductsData({ user_id: user?.id || '', filter: activeTabName }));
+    }, [activeTabName]);
+
+    const itemsList = useMemo(() => products?.map((item) => (
+        <ShopCard
+            key={`${item?.name}_${item?.price}`}
+            text={item?.name}
+            coinsCount={item.price}
+            href={item?.content}
+            img={item.picture}
+        />
+    )), [products]);
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
             <div className={classNames(cls.Shop, {}, [className])}>
                 <Heading level={1} className={cls.shopHeading}>Магазин</Heading>
-                <Tabs className={cls.tabs} >
+                <Tabs className={cls.tabs}>
                     {tabs.map((tab, index) => (
                         <Tab
                             key={index}
@@ -59,9 +78,11 @@ const ShopPage = ({ className }: ShopPageProps) => {
                             active={tab.isActive}
                             onClick={() => handleChangeActiveTabByName(tab.name)}
                         >
-                            <div className={cls.shopCardsList}>
-                                {itemsList}
-                            </div>
+                            {isProductsLoading ? <div className={cls.loader}><Loader /></div> : (
+                                <div className={cls.shopCardsList}>
+                                    {itemsList}
+                                </div>
+                            )}
                         </Tab>
                     ))}
                 </Tabs>

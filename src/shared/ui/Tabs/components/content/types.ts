@@ -1,4 +1,4 @@
-import { TabProps } from "../tab/types";
+import { TabProps } from '../tab/types';
 
 export type ContentProps = {
   tabs: Array<TabProps>;

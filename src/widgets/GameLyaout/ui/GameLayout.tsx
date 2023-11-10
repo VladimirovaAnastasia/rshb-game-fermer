@@ -5,9 +5,9 @@ import { GameMenu } from 'widgets/GameLyaout/ui/GameMenu';
 import { useLocation } from 'react-router-dom';
 import { gameRoutes } from 'widgets/GameLyaout/model/items';
 import { GameDialog } from 'widgets/GameDialog';
+import { useSelector } from 'react-redux';
+import { getUserAuthData } from 'entities/User';
 import cls from './GameLayout.module.scss';
-import {useSelector} from "react-redux";
-import {getUserAuthData} from "entities/User";
 
 interface GameHeaderProps {
     className?: string;

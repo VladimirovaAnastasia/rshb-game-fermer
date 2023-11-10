@@ -14,12 +14,14 @@ import { NavigateOptions } from 'react-router';
 import { BedsSchema } from 'entities/Bed';
 import { TasksSchema } from 'entities/Task';
 import { SurveysSchema } from 'entities/Survey';
+import { ProductsSchema } from 'entities/Products';
 
 export interface StateSchema {
   user: UserSchema;
   beds: BedsSchema;
   tasks: TasksSchema;
   survey: SurveysSchema;
+  products: ProductsSchema;
 
   // Асинхронные редюсеры
   loginForm?: LoginSchema;

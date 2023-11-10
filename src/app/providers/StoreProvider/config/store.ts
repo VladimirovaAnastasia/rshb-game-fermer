@@ -6,6 +6,7 @@ import { CombinedState, Reducer } from 'redux';
 import { bedsReducer } from 'entities/Bed';
 import { tasksReducer } from 'entities/Task';
 import { surveyReducer } from 'entities/Survey';
+import { productsReducer } from 'entities/Products';
 import { StateSchema, ThunkExtraArg } from './StateSchema';
 import { createReducerManager } from './reducerManager';
 
@@ -20,6 +21,7 @@ export function createReduxStore(
         beds: bedsReducer,
         tasks: tasksReducer,
         survey: surveyReducer,
+        products: productsReducer,
     };
 
     const reducerManager = createReducerManager(rootReducers);

@@ -30,11 +30,6 @@ export const userSlice = createSlice({
                 fetchUserData.fulfilled,
                 (state, action: PayloadAction<User>) => {
                     state.authData = action.payload;
-
-                    localStorage.setItem(
-                        USER_LOCALSTORAGE_KEY,
-                        JSON.stringify(state.authData),
-                    );
                 },
             )
             .addCase(fetchUserData.rejected, (state, action) => {});

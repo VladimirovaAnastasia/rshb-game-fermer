@@ -1,14 +1,16 @@
-import {Children, ReactElement, useEffect, useMemo, useState} from "react";
-import { Header } from "./components/header";
-import { Content } from "./components/content";
-import { TabProps } from "./components/tab/types";
+import {
+    Children, ReactElement, useEffect, useMemo, useState,
+} from 'react';
+import { classNames } from 'shared/lib/classNames/classNames';
+import { Header } from './components/header';
+import { Content } from './components/content';
+import { TabProps } from './components/tab/types';
 import cls from './Tabs.module.scss';
-import {classNames} from "shared/lib/classNames/classNames";
 
 const TAB_SIZES = {
-    SMALL: "small",
-    MEDIUM: "medium",
-    LARGE: "large",
+    SMALL: 'small',
+    MEDIUM: 'medium',
+    LARGE: 'large',
 } as const;
 
 export type TabSize = typeof TAB_SIZES[keyof typeof TAB_SIZES];
@@ -21,11 +23,11 @@ export interface TabsProps {
 }
 
 export const Tabs = ({
-                         size = "medium",
-                         children,
-                         className,
-                         dataTestId = "tabs",
-                     }: TabsProps) => {
+    size = 'medium',
+    children,
+    className,
+    dataTestId = 'tabs',
+}: TabsProps) => {
     const enabledTabs = useMemo(() => {
         const newTabs: Array<TabProps> = [];
 
