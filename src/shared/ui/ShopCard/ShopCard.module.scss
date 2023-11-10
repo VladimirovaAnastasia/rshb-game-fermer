@@ -9,6 +9,7 @@
     height: 300px;
     width: 300px;
     cursor: pointer;
+    overflow: hidden;
 
     &.active {
        border: 3px #0dff11 solid;
@@ -21,6 +22,12 @@
 
 .img {
     height: 50%;
+    overflow: hidden;
+    
+    img {
+        height: auto;
+        max-width: 100%;
+    }
 }
 
 .info {

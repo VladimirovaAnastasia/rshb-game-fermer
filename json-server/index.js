@@ -330,8 +330,12 @@ server.get("/products", (req, res) => {
 
         const user = users.find(user => user.id === user_id);
 
-        if (user_id && user && filter === "mine") {
-            products = products.filter((item) => user.products.includes(item.id))
+        if (user_id && user) {
+            switch (filter) {
+                case "mine": {
+                    products = products.filter((item) => user.products.includes(item.id))
+                }
+            }
         }
 
         products.forEach(item => {
