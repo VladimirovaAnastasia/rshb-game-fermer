@@ -80,7 +80,7 @@ export const PlantModal = ({
     const handleBedDrop = (event: DragEvent<SVGSVGElement>) => {
         if (taskAnswer === 'success') {
             setDoneTask(true);
-            //play();
+            play();
             handleSubmit({
                 crop: plant as string,
                 bed_id: bedId,
@@ -119,7 +119,7 @@ export const PlantModal = ({
                         {paused ? <Play /> : <Pause />}
                     </div>
                 </div>
-                {/*{ hasDoneTask && <CoinIcon className={cls.coin} />}*/}
+                { hasDoneTask && <CoinIcon className={cls.coin} />}
 
                 <div className={cls.content}>
                     <div
