@@ -69,6 +69,8 @@ const ShopPage = ({ className }: ShopPageProps) => {
 
     const handleSubmitBuyProduct = () => {
         dispatch(fetchUserData(user?.id || ''));
+        dispatch(fetchProductsData({ user_id: user?.id || '', filter: 'all' }));
+        setActiveTabName('all')
     };
 
     useEffect(() => {
