@@ -16,7 +16,7 @@ export const ShopCard = memo((props: ShopCardProps) => {
   const {className, text, coinsCount, href, img, onClick} = props;
 
   return (
-    <div className={classNames(cls.ShopCard, {[cls.active]: !!href})}>
+    <div className={classNames(cls.ShopCard, {[cls.active]: !!href})} onClick={onClick}>
       <div className={cls.img}>
         <img src={`http://localhost:8000/images/products?image=${img}`} />
       </div>
