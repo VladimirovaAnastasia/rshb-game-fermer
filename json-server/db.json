@@ -4,11 +4,13 @@
       "id": "1",
       "username": "admin",
       "password": "123",
-      "ballance": 4000,
+      "ballance": 3595,
       "signup_date": "Sun Nov 05 2023 15:47:05 GMT+0300 (Moscow Standard Time)",
       "products": [
         "0",
-        "1"
+        "1",
+        "2",
+        "3"
       ]
     }
   ],
