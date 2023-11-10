@@ -36,8 +36,13 @@ const tabs = [
         isActive: true,
     },
     {
-        name: 'mine',
+        name: 'available',
         title: 'Доступные мне',
+        isActive: false,
+    },
+    {
+        name: 'mine',
+        title: 'Приобретённые',
         isActive: false,
     },
 ];
