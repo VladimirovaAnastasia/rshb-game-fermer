@@ -1,5 +1,4 @@
 import { Modal } from 'shared/ui/Modal/Modal';
-import cn from 'classnames';
 import { ReactComponent as Back } from 'shared/assets/images/farm/back.svg';
 import { ReactComponent as Pause } from 'shared/assets/images/farm/pause.svg';
 import { ReactComponent as Play } from 'shared/assets/images/farm/play.svg';
@@ -12,6 +11,7 @@ import { useSelector } from 'react-redux';
 import { getSurveyData } from 'entities/Survey';
 import cls from './GeniusModal.module.scss';
 import { useTimer } from './useTimer';
+import {classNames} from "shared/lib/classNames/classNames";
 
 interface Props {
   opened: boolean;
@@ -157,7 +157,7 @@ export const GeniusModal = ({
                                     <div className={cls.item} key={question.question}>
                                         <span>{question.question}</span>
                                         <span
-                                            className={cn(cls['answers-badge'], {
+                                            className={classNames(cls['answers-badge'], {
                                                 [cls['answers-badge__green']]:
                           question.state === 'correct',
                                                 [cls['answers-badge__red']]:
@@ -177,7 +177,7 @@ export const GeniusModal = ({
                             <div className={cls.answers}>
                                 {answers?.map((answer, index) => (
                                     <span
-                                        className={cn(cls['answers-badge'], {
+                                        className={classNames(cls['answers-badge'], {
                                             [cls['answers-badge__light-green']]:
                         questions?.[index].state === 'correct',
                                             [cls['answers-badge__light-red']]:
