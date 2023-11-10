@@ -62,7 +62,7 @@ export const BuyProductModal = ({
                         {' '}
                         {`После покупки с вас спишется   ${product?.price} `}
                         {' '}
-                        {!isSuccess && <CoinIcon />}
+                        {!isSuccess && <CoinIcon className={cls['text-coin']}/>}
                     </p>
                 </div>
 

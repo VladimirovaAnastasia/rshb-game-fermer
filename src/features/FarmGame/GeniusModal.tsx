@@ -1,15 +1,17 @@
-import {Modal} from "shared/ui/Modal/Modal";
-import {ReactComponent as Back} from "shared/assets/images/farm/back.svg";
-import {ReactComponent as Pause} from "shared/assets/images/farm/pause.svg";
-import {ReactComponent as Play} from "shared/assets/images/farm/play.svg";
-import {DragEvent, MouseEvent, useEffect, useMemo, useState} from "react";
-import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
-import {fetchSurveyData} from "entities/Survey/model/services/fetchSurveyData/fetchSurveyData";
-import {useSelector} from "react-redux";
-import {getSurveyData} from "entities/Survey";
-import {classNames} from "shared/lib/classNames/classNames";
-import cls from "./GeniusModal.module.scss";
-import {useTimer} from "./useTimer";
+import { Modal } from 'shared/ui/Modal/Modal';
+import { ReactComponent as Back } from 'shared/assets/images/farm/back.svg';
+import { ReactComponent as Pause } from 'shared/assets/images/farm/pause.svg';
+import { ReactComponent as Play } from 'shared/assets/images/farm/play.svg';
+import {
+    DragEvent, MouseEvent, useEffect, useMemo, useState,
+} from 'react';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { fetchSurveyData } from 'entities/Survey/model/services/fetchSurveyData/fetchSurveyData';
+import { useSelector } from 'react-redux';
+import { getSurveyData } from 'entities/Survey';
+import { classNames } from 'shared/lib/classNames/classNames';
+import cls from './GeniusModal.module.scss';
+import { useTimer } from './useTimer';
 
 interface Props {
   opened: boolean;
@@ -22,7 +24,7 @@ interface InnerQuestion {
   question: string;
   answer: string;
   index: number;
-  state: "correct" | "incorrect" | "empty";
+  state: 'correct' | 'incorrect' | 'empty';
 }
 
 interface InnerAnswer {
@@ -32,206 +34,205 @@ interface InnerAnswer {
 
 const TIMEOUT = 60_000; // minute
 
-export const GeniusModal = ({onClose, opened, taskId, onSubmit}: Props) => {
-  const dispatch = useAppDispatch();
-  const survey = useSelector(getSurveyData);
+export const GeniusModal = ({
+    onClose, opened, taskId, onSubmit,
+}: Props) => {
+    const dispatch = useAppDispatch();
+    const survey = useSelector(getSurveyData);
 
-  const {elapsedTime, isRunning, handlePause, handleReset, handleStart} =
-    useTimer();
+    const {
+        elapsedTime, isRunning, handlePause, handleReset, handleStart,
+    } = useTimer();
 
-  const progress = Math.min(
-    Math.round((elapsedTime / TIMEOUT) * 10000) / 100,
-    100
-  );
-
-  const isOver = useMemo(() => progress === 100, [progress]);
-
-  useEffect(() => {
-    handleReset();
-    if (opened) {
-      handleStart();
-    } else {
-      handlePause();
-    }
-  }, [opened]);
-
-  useEffect(() => {
-    dispatch(fetchSurveyData(taskId));
-  }, []);
-
-  const [questions, setQuestions] = useState<InnerQuestion[]>();
-  const [answers, setAnswers] = useState<InnerAnswer[]>();
-  const [selectedAnswerIndex, setSelectedAnswerIndex] = useState<number>();
-
-  useEffect(() => {
-    const questions = survey?.questions.map((question) => question.question);
-    const answers = survey?.questions.map((question) => question.answer);
-
-    setQuestions(
-      questions?.map<InnerQuestion>((item, index) => ({
-        question: item,
-        answer: answers![index],
-        index,
-        state: "empty",
-      }))
+    const progress = Math.min(
+        Math.round((elapsedTime / TIMEOUT) * 10000) / 100,
+        100,
     );
 
-    setAnswers(
-      answers?.map<InnerAnswer>((item, index) => ({
-        answer: item,
-        index,
-      }))
-    );
-  }, [survey]);
+    const isOver = useMemo(() => progress === 100, [progress]);
 
-  const handleQuestionClick = (event: MouseEvent<HTMLDivElement>) => {
-    if (selectedAnswerIndex === undefined) {
-      return;
-    }
+    useEffect(() => {
+        handleReset();
+        if (opened) {
+            handleStart();
+        } else {
+            handlePause();
+        }
+    }, [opened]);
 
-    const index = event.currentTarget.getAttribute("data-index");
-    if (index && selectedAnswerIndex === +index) {
-      setQuestions((questions) =>
-        questions?.map((question, i) => ({
-          ...question,
-          state: i === +index ? "correct" : question.state,
-        }))
-      );
-    } else {
-    }
+    useEffect(() => {
+        dispatch(fetchSurveyData(taskId));
+    }, []);
 
-    setSelectedAnswerIndex(undefined);
-  };
+    const [questions, setQuestions] = useState<InnerQuestion[]>();
+    const [answers, setAnswers] = useState<InnerAnswer[]>();
+    const [selectedAnswerIndex, setSelectedAnswerIndex] = useState<number>();
 
-  const handleAnswerClick = (event: MouseEvent<HTMLDivElement>) => {
-    const index = event.currentTarget.getAttribute("data-index");
+    useEffect(() => {
+        const questions = survey?.questions.map((question) => question.question);
+        const answers = survey?.questions.map((question) => question.answer);
 
-    if (index) {
-      setSelectedAnswerIndex(+index);
-    }
-  };
+        setQuestions(
+            questions?.map<InnerQuestion>((item, index) => ({
+                question: item,
+                answer: answers![index],
+                index,
+                state: 'empty',
+            })),
+        );
 
-  useEffect(() => {
-    const allCorrect = questions?.every((item) => item.state === "correct");
+        setAnswers(
+            answers?.map<InnerAnswer>((item, index) => ({
+                answer: item,
+                index,
+            })),
+        );
+    }, [survey]);
 
-    if (allCorrect) {
-      onSubmit(true);
-      return;
-    }
+    const handleQuestionClick = (event: MouseEvent<HTMLDivElement>) => {
+        if (selectedAnswerIndex === undefined) {
+            return;
+        }
 
-    if (isOver) {
-      onSubmit(false);
-    }
-  }, [isOver, questions]);
+        const index = event.currentTarget.getAttribute('data-index');
+        if (index && selectedAnswerIndex === +index) {
+            setQuestions((questions) => questions?.map((question, i) => ({
+                ...question,
+                state: i === +index ? 'correct' : question.state,
+            })));
+        } else {
+        }
 
-  const handleDragStart = (event: DragEvent<HTMLSpanElement>) => {
-    const index = event.currentTarget.getAttribute("data-index");
+        setSelectedAnswerIndex(undefined);
+    };
 
-    if (index) {
-      setSelectedAnswerIndex(+index);
-    }
-  };
+    const handleAnswerClick = (event: MouseEvent<HTMLDivElement>) => {
+        const index = event.currentTarget.getAttribute('data-index');
 
-  const handleDragEnd = () => {
-    setSelectedAnswerIndex(undefined);
-  };
+        if (index) {
+            setSelectedAnswerIndex(+index);
+        }
+    };
 
-  const handleDrop = (event: DragEvent<HTMLSpanElement>) => {
-    if (selectedAnswerIndex === undefined) {
-      return;
-    }
+    useEffect(() => {
+        const allCorrect = questions?.every((item) => item.state === 'correct');
 
-    const index = event.currentTarget.getAttribute("data-index");
-    if (index !== null) {
-      setQuestions((questions) =>
-        questions?.map((question, i) => ({
-          ...question,
-          state:
+        if (allCorrect) {
+            onSubmit(true);
+            return;
+        }
+
+        if (isOver) {
+            onSubmit(false);
+        }
+    }, [isOver, questions]);
+
+    const handleDragStart = (event: DragEvent<HTMLSpanElement>) => {
+        const index = event.currentTarget.getAttribute('data-index');
+
+        if (index) {
+            setSelectedAnswerIndex(+index);
+        }
+    };
+
+    const handleDragEnd = () => {
+        setSelectedAnswerIndex(undefined);
+    };
+
+    const handleDrop = (event: DragEvent<HTMLSpanElement>) => {
+        if (selectedAnswerIndex === undefined) {
+            return;
+        }
+
+        const index = event.currentTarget.getAttribute('data-index');
+        if (index !== null) {
+            setQuestions((questions) => questions?.map((question, i) => ({
+                ...question,
+                state:
             i === +index
-              ? selectedAnswerIndex === +index
-                ? "correct"
-                : "incorrect"
-              : question.state,
-        }))
-      );
-    }
+                ? selectedAnswerIndex === +index
+                    ? 'correct'
+                    : 'incorrect'
+                : question.state,
+            })));
+        }
 
-    setSelectedAnswerIndex(undefined);
-  };
+        setSelectedAnswerIndex(undefined);
+    };
 
-  return (
-    <Modal isOpen={opened} className={cls.modal}>
-      <div className={cls.root}>
-        <div className={cls.header}>
-          <div onClick={onClose}>
-            <Back />
-          </div>
-          <span>Я финансовый гений!</span>
-          <div
-            onClick={() => (isRunning ? handlePause() : handleStart())}
-            style={{
-              background: `linear-gradient(#2a5259, #2a5259) content-box no-repeat, conic-gradient(#FF9595 ${progress}%, 0, #99EB8C ) border-box`,
-              border: "4px solid transparent",
-              borderRadius: "50%",
-            }}
-          >
-            {isRunning ? <Pause /> : <Play />}
-          </div>
-        </div>
-
-        <div className={cls.content}>
-          <span>Соедини термины с их правильными определениями:</span>
-
-          {survey?.questions && (
-            <>
-              <div className={cls.questions}>
-                {questions?.map((question, index) => (
-                  <div className={cls.item} key={question.question}>
-                    <span>{question.question}</span>
-                    <span
-                      className={classNames(cls["answers-badge"], {
-                        [cls["answers-badge__green"]]:
-                          question.state === "correct",
-                        [cls["answers-badge__red"]]:
-                          question.state === "incorrect",
-                        [cls["answers-badge__empty"]]:
-                          question.state === "empty",
-                      })}
-                      data-index={index}
-                      onClick={handleQuestionClick}
-                      onDrop={handleDrop}
-                      onDragOver={(event) => event.preventDefault()}
+    return (
+        <Modal isOpen={opened} className={cls.modal}>
+            <div className={cls.root}>
+                <div className={cls.header}>
+                    <div onClick={onClose}>
+                        <Back />
+                    </div>
+                    <span>Я финансовый гений!</span>
+                    <div
+                        onClick={() => (isRunning ? handlePause() : handleStart())}
+                        style={{
+                            background: `linear-gradient(#2a5259, #2a5259) content-box no-repeat, conic-gradient(#FF9595 ${progress}%, 0, #99EB8C ) border-box`,
+                            border: '4px solid transparent',
+                            borderRadius: '50%',
+                        }}
                     >
-                      {question.answer}
-                    </span>
-                  </div>
-                ))}
-              </div>
+                        {isRunning ? <Pause /> : <Play />}
+                    </div>
+                </div>
 
-              <div className={cls.answers}>
-                {answers?.map((answer, index) => (
-                  <span
-                    className={classNames(cls["answers-badge"], {
-                      [cls["answers-badge__light-green"]]:
-                        questions?.[index].state === "correct",
-                      [cls["answers-badge__light-red"]]:
-                        questions?.[index].state === "incorrect",
-                    })}
-                    onClick={handleAnswerClick}
-                    data-index={index}
-                    key={answer.answer}
-                    draggable
-                    onDragStart={handleDragStart}
-                    onDragEnd={handleDragEnd}
-                  >
-                    {answer.answer}
-                  </span>
-                ))}
-              </div>
-            </>
-          )}
-        </div>
-      </div>
-    </Modal>
-  );
+                <div className={cls.content}>
+                    <span>Соедини термины с их правильными определениями:</span>
+
+                    {survey?.questions && (
+                        <>
+                            <div className={cls.questions}>
+                                {questions?.map((question, index) => (
+                                    <div className={cls.item} key={question.question}>
+                                        <span>{question.question}</span>
+                                        <span
+                                            className={classNames(cls['answers-badge'], {
+                                                [cls['answers-badge__green']]:
+                          question.state === 'correct',
+                                                [cls['answers-badge__red']]:
+                          question.state === 'incorrect',
+                                                [cls['answers-badge__empty']]:
+                          question.state === 'empty',
+                                            })}
+                                            data-index={index}
+                                            onClick={handleQuestionClick}
+                                            onDrop={handleDrop}
+                                            onDragOver={(event) => event.preventDefault()}
+                                        >
+                                            {question.answer}
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <div className={cls.answers}>
+                                {answers?.map((answer, index) => (
+                                    <span
+                                        className={classNames(cls['answers-badge'], {
+                                            [cls['answers-badge__light-green']]:
+                        questions?.[index].state === 'correct',
+                                            [cls['answers-badge__light-red']]:
+                        questions?.[index].state === 'incorrect',
+                                        })}
+                                        onClick={handleAnswerClick}
+                                        data-index={index}
+                                        key={answer.answer}
+                                        draggable
+                                        onDragStart={handleDragStart}
+                                        onDragEnd={handleDragEnd}
+                                    >
+                                        {answer.answer}
+                                    </span>
+                                ))}
+                            </div>
+                        </>
+                    )}
+                </div>
+            </div>
+        </Modal>
+    );
 };

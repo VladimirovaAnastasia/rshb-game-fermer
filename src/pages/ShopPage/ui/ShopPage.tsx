@@ -70,7 +70,7 @@ const ShopPage = ({ className }: ShopPageProps) => {
     const handleSubmitBuyProduct = () => {
         dispatch(fetchUserData(user?.id || ''));
         dispatch(fetchProductsData({ user_id: user?.id || '', filter: 'all' }));
-        setActiveTabName('all')
+        setActiveTabName('all');
     };
 
     useEffect(() => {
@@ -108,7 +108,12 @@ const ShopPage = ({ className }: ShopPageProps) => {
                         >
                             {isProductsLoading ? <div className={cls.loader}><Loader /></div> : (
                                 <div className={cls.shopCardsList}>
-                                    {itemsList?.length === 0 ? <div className={cls['not-found']}><img src={NotFound} alt="not-found" className={cls.img} /><p>Ничего не найдено</p></div> : itemsList}
+                                    {itemsList?.length === 0 ? (
+                                        <div className={cls['not-found']}>
+                                            <img src={NotFound} alt="not-found" className={cls.img} />
+                                            <p>Ничего не найдено</p>
+                                        </div>
+                                    ) : itemsList}
                                 </div>
                             )}
                         </Tab>
