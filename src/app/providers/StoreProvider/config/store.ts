@@ -9,6 +9,7 @@ import { surveyReducer } from 'entities/Survey';
 import { productsReducer } from 'entities/Products';
 import { StateSchema, ThunkExtraArg } from './StateSchema';
 import { createReducerManager } from './reducerManager';
+import {gameReducer} from "entities/Game";
 
 export function createReduxStore(
     initialState?: StateSchema,
@@ -22,6 +23,7 @@ export function createReduxStore(
         tasks: tasksReducer,
         survey: surveyReducer,
         products: productsReducer,
+        game: gameReducer,
     };
 
     const reducerManager = createReducerManager(rootReducers);

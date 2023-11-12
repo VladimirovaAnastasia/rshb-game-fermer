@@ -1,9 +1,11 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import React, { useMemo } from 'react';
+import React, {useEffect, useMemo} from 'react';
 import { StatisticsCard, StatisticsCardType } from 'shared/ui/StatisticsCard/StatisticsCard';
-import { useSelector } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import { getUserAuthData } from 'entities/User';
 import cls from './GameHeader.module.scss';
+import {fetchGameData} from "entities/Game/model/services/fetchGameData/fetchGameData";
+import {getGameData} from "entities/Game/model/selectors/getGameData/getGameData";
 
 export enum GameHeaderTheme {
   LIGHT = 'light',
@@ -18,11 +20,18 @@ interface GameHeaderProps {
 // TODO: Добавить здесь вызовы, подцепить к беку
 export const GameHeader = ({ theme, className }: GameHeaderProps) => {
     const user = useSelector(getUserAuthData);
+    const balance = useSelector(getGameData);
+
+    const dispatch = useDispatch();
 
     const date = useMemo(() => Math.ceil(
         (new Date().valueOf() - new Date(user?.signup_date!).valueOf())
             / (1000 * 60 * 60 * 24),
     ), [user?.signup_date]);
+
+    useEffect(() => {
+        dispatch(fetchGameData({user_id: user?.id || ''}))
+    }, []);
 
     return (
         <div className={classNames(cls.GameHeader, {}, [className])}>
@@ -30,7 +39,7 @@ export const GameHeader = ({ theme, className }: GameHeaderProps) => {
                 <StatisticsCard
                     className={cls[theme]}
                     cardType={StatisticsCardType.COINS}
-                    text={`${user?.ballance ?? ''}`}
+                    text={`${balance ?? ''}`}
                 />
             </div>
             <div className={cls.content}>

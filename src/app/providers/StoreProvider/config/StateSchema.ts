@@ -15,6 +15,7 @@ import { BedsSchema } from 'entities/Bed';
 import { TasksSchema } from 'entities/Task';
 import { SurveysSchema } from 'entities/Survey';
 import { ProductsSchema } from 'entities/Products';
+import {GameSchema} from "entities/Game";
 
 export interface StateSchema {
   user: UserSchema;
@@ -22,6 +23,7 @@ export interface StateSchema {
   tasks: TasksSchema;
   survey: SurveysSchema;
   products: ProductsSchema;
+  game: GameSchema;
 
   // Асинхронные редюсеры
   loginForm?: LoginSchema;

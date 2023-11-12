@@ -427,6 +427,24 @@ server.get("/images/products", (req, res) => {
     }
 })
 
+server.get("/game", (req, res) => {
+    try {
+        const {user_id} = req.query;
+        const db = JSON.parse(
+            fs.readFileSync(path.resolve(__dirname, "db.json"), "UTF-8"),
+        );
+
+        const {users} = db;
+
+        const user = users.find(user => user.id === user_id);
+
+        return res.json(user.ballance);
+    } catch (e) {
+        console.log(e);
+        return res.status(500).json({message: e.message});
+    }
+});
+
 
 
 // проверяем, авторизован ли пользователь
