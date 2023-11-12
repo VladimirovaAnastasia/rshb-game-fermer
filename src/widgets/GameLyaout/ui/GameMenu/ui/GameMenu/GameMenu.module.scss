@@ -4,6 +4,7 @@
     transform: translateX(-50%);
     bottom: 20px;
     z-index: 1;
+    min-width: 370px;
 }
 
 .items {
@@ -13,8 +14,9 @@
     background: #101E2CE5;
     border-radius: 40px;
     padding: 10px;
+    text-align: center;
 
-    @media (min-width: 768px) {
+    @media (min-width: 1024px) {
         gap: 40px;
         padding: 10px 20px;
     }
