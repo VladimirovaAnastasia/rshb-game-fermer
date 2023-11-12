@@ -3,9 +3,9 @@ import { ThunkConfig } from 'app/providers/StoreProvider';
 
 export const fetchGameData = createAsyncThunk<
   number,
-    { user_id: string},
+  string | undefined,
   ThunkConfig<string>
->('user/fetchGameData', async ({ user_id }, thunkApi) => {
+>('user/fetchGameData', async ( user_id , thunkApi) => {
     const { extra, rejectWithValue } = thunkApi;
 
     try {

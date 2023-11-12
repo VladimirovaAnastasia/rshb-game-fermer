@@ -21,9 +21,9 @@ import {
     fetchTasksData,
 } from 'entities/Task/model/services/fetchTasksData/fetchTasksData';
 import { TaskCard } from 'shared/ui/TaskCard/TaskCard';
-import { fetchUserData } from 'entities/User/model/services/fetchUserData/fetchUserData';
 import { GeniusModal, PlantModal } from 'features/FarmGame';
 import cls from './FarmPage.module.scss';
+import {fetchGameData} from "entities/Game/model/services/fetchGameData/fetchGameData";
 
 interface BedPlant {
   crop: string;
@@ -65,7 +65,7 @@ const FarmPage = () => {
             )
                 .unwrap()
                 .then(() => {
-                    dispatch(fetchUserData(user?.id));
+                    dispatch(fetchGameData(user?.id));
                 });
         }
     };
@@ -111,7 +111,7 @@ const FarmPage = () => {
                 dispatch(completeTask({ task_id: task.id }))
                     .unwrap()
                     .then(() => {
-                        dispatch(fetchUserData(user?.id));
+                        dispatch(fetchGameData(user?.id));
                     });
             }
         },

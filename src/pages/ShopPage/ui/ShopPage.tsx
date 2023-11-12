@@ -18,8 +18,8 @@ import { Loader } from 'shared/ui/Loader/Loader';
 import { getProductsLoading } from 'entities/Products/model/selectors/getProductsData/getProductsData';
 import NotFound from 'shared/assets/images/not-found.png';
 import { BuyProductModal } from 'features/BuyProduct/BuyProductModal';
-import { fetchUserData } from 'entities/User/model/services/fetchUserData/fetchUserData';
 import cls from './ShopPage.module.scss';
+import {fetchGameData} from "entities/Game/model/services/fetchGameData/fetchGameData";
 
 const reducers: ReducersList = {
     profile: profileReducer,
@@ -68,14 +68,10 @@ const ShopPage = ({ className }: ShopPageProps) => {
     };
 
     const handleSubmitBuyProduct = () => {
-        dispatch(fetchUserData(user?.id || ''));
+        dispatch(fetchGameData(user?.id));
         dispatch(fetchProductsData({ user_id: user?.id || '', filter: 'all' }));
         setActiveTabName('all');
     };
-
-    useEffect(() => {
-        dispatch(fetchUserData(user?.id || ''))
-    }, []);
 
     useEffect(() => {
         dispatch(fetchProductsData({ user_id: user?.id || '', filter: activeTabName }));

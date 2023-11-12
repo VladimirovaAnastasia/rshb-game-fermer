@@ -30,7 +30,7 @@ export const GameHeader = ({ theme, className }: GameHeaderProps) => {
     ), [user?.signup_date]);
 
     useEffect(() => {
-        dispatch(fetchGameData({user_id: user?.id || ''}))
+        dispatch(fetchGameData(user?.id))
     }, []);
 
     return (
