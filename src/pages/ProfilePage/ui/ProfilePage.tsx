@@ -87,28 +87,29 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
             <div className={classNames(cls.Profile, {}, [className])}>
-                <ProfilePageHeader />
-                {validateErrors?.length && validateErrors.map((err) => (
-                    <Text
-                        key={err}
-                        theme={TextTheme.ERROR}
-                        text={validateErrorTranslates[err]}
-                    />
-                ))}
-                <ProfileCard
-                    data={formData}
-                    isLoading={isLoading}
-                    error={error}
-                    readonly={readonly}
-                    onChangeFirstname={onChangeFirstname}
-                    onChangeLastname={onChangeLastname}
-                    onChangeAge={onChangeAge}
-                    onChangeCity={onChangeCity}
-                    onChangeUsername={onChangeUsername}
-                    onChangeAvatar={onChangeAvatar}
-                    onChangeCurrency={onChangeCurrency}
-                    onChangeCountry={onChangeCountry}
-                />
+                Страница в проработке
+                {/*<ProfilePageHeader />*/}
+                {/*{validateErrors?.length && validateErrors.map((err) => (*/}
+                {/*    <Text*/}
+                {/*        key={err}*/}
+                {/*        theme={TextTheme.ERROR}*/}
+                {/*        text={validateErrorTranslates[err]}*/}
+                {/*    />*/}
+                {/*))}*/}
+                {/*<ProfileCard*/}
+                {/*    data={formData}*/}
+                {/*    isLoading={isLoading}*/}
+                {/*    error={error}*/}
+                {/*    readonly={readonly}*/}
+                {/*    onChangeFirstname={onChangeFirstname}*/}
+                {/*    onChangeLastname={onChangeLastname}*/}
+                {/*    onChangeAge={onChangeAge}*/}
+                {/*    onChangeCity={onChangeCity}*/}
+                {/*    onChangeUsername={onChangeUsername}*/}
+                {/*    onChangeAvatar={onChangeAvatar}*/}
+                {/*    onChangeCurrency={onChangeCurrency}*/}
+                {/*    onChangeCountry={onChangeCountry}*/}
+                {/*/>*/}
             </div>
         </DynamicModuleLoader>
     );
