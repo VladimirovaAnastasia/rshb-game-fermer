@@ -1,8 +1,9 @@
-import { classNames, Mods } from 'shared/lib/classNames/classNames';
-import {ChangeEvent, memo, MouseEventHandler} from 'react';
+import { classNames } from 'shared/lib/classNames/classNames';
+import {memo} from 'react';
 import { ReactComponent as CoinIcon } from 'shared/assets/icons/coin-16-16.svg';
 import cls from './ShopCard.module.scss';
 import {useNavigate} from "react-router-dom";
+import {API_URL} from "shared/const/api";
 
 interface ShopCardProps {
   className?: string;
@@ -30,7 +31,7 @@ export const ShopCard = memo((props: ShopCardProps) => {
     return (
         <div className={classNames(cls.ShopCard, { [cls.active]: !!href })} onClick={onClick}>
             <div className={cls.img}>
-                <img src={`http://localhost:8000/images/products?image=${img}`} />
+                <img src={`${API_URL}/images/products?image=${img}`} />
             </div>
             <div className={cls.info}>
                 {text && <p className={cls.text}>{text}</p>}
