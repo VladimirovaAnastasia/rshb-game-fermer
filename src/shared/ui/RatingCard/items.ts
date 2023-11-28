@@ -1,4 +1,4 @@
-import { ReactComponent as ProfileIcon } from 'shared/assets/icons/profile-32-32.svg';
+import ProfileIcon from 'shared/assets/icons/profile-32-32.svg?react';
 
 export const RatingCardsList = [
     {

@@ -6,7 +6,7 @@ export {
     productsReducer,
     productsActions,
 } from './model/slice/productsSlice';
-export {
+export type {
     ProductsSchema,
     Products,
 } from './model/types/Products';

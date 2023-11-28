@@ -9,7 +9,7 @@ import {
     KeyboardEvent,
 } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { ReactComponent as CloseIcon } from 'shared/assets/icons/my_village-24-24.svg';
+import CloseIcon from 'shared/assets/icons/my_village-24-24.svg?react';
 import { Hint } from './components/hint';
 import { Icon } from './components/icon';
 import { INPUT_TYPES } from './constants';

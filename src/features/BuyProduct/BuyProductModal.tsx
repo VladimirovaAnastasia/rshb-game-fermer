@@ -1,7 +1,7 @@
 import { Modal } from 'shared/ui/Modal/Modal';
 import coinSound from 'shared/assets/sounds/coins.mp3';
 import useSound from 'use-sound';
-import { ReactComponent as CoinIcon } from 'shared/assets/icons/coin-16-16.svg';
+import CoinIcon from 'shared/assets/icons/coin-16-16.svg?react';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { updateProductsData } from 'entities/Products/model/services/updateProductsData/updateProductsData';

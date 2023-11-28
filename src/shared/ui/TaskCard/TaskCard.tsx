@@ -1,6 +1,6 @@
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import { memo } from 'react';
-import { ReactComponent as CoinIcon } from 'shared/assets/icons/coin-16-16.svg';
+import CoinIcon from 'shared/assets/icons/coin-16-16.svg?react';
 import cls from './TaskCard.module.scss';
 
 interface TaskCardProps {

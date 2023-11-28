@@ -1,2 +1,2 @@
-export { PlantModal } from './PlantModal';
-export { GeniusModal } from './GeniusModal';
+export { PlantModal } from "./PlantModal";
+export { SurveyModal } from "./SurveyModal";

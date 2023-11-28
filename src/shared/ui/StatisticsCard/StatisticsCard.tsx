@@ -2,12 +2,7 @@ import { memo } from 'react';
 import { cardTypeIconMapper } from 'shared/ui/StatisticsCard/items';
 import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './StatisticsCard.module.scss';
-
-export const enum StatisticsCardType {
-    COINS = 'coins',
-    DAYS = 'days',
-    RATING = 'rating',
-}
+import { StatisticsCardType } from './types';
 
 interface StatisticsCardProps {
     className?: string;

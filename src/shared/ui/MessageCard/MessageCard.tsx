@@ -1,6 +1,6 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { memo } from 'react';
-import { ReactComponent as CloseIcon } from 'shared/assets/icons/close-44-44.svg';
+import CloseIcon from 'shared/assets/icons/close-44-44.svg?react';
 import cls from './MessageCard.module.scss';
 
 interface MessageCardProps {

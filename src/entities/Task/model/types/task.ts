@@ -1,10 +1,13 @@
+export interface TaskDetails {
+  id: string;
+  cost: number;
+  type: "Plant" | "FinanceGenius";
+}
+
 export interface Task {
   id: string;
-  user_id: string;
-  type: string;
-  last_activity_time: string;
-  active: boolean;
-  cost: number;
+  completedAt?: string;
+  task: TaskDetails;
 }
 
 export interface TasksSchema {

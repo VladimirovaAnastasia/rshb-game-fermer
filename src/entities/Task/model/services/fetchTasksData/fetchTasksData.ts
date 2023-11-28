@@ -1,47 +1,47 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { ThunkConfig } from 'app/providers/StoreProvider';
-import { Task } from 'entities/Task';
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { ThunkConfig } from "app/providers/StoreProvider";
+import { Task } from "entities/Task";
 
 export const fetchTasksData = createAsyncThunk<
   Task[],
-  string,
+  undefined,
   ThunkConfig<string>
->('tasks/fetchTasksData', async (user_id, thunkApi) => {
-    const { extra, rejectWithValue } = thunkApi;
+>("tasks/fetchTasksData", async (_, thunkApi) => {
+  const { extra, rejectWithValue } = thunkApi;
 
-    try {
-        const response = await extra.api.get<Task[]>(`/tasks?user_id=${user_id}`);
+  try {
+    const response = await extra.api.get<Task[]>(`/tasks`);
 
-        if (!response.data) {
-            throw new Error();
-        }
-
-        return response.data;
-    } catch (e) {
-        console.log(e);
-        return rejectWithValue('error');
+    if (!response.data) {
+      throw new Error();
     }
+
+    return response.data;
+  } catch (e) {
+    console.log(e);
+    return rejectWithValue("error");
+  }
 });
 
 export const completeTask = createAsyncThunk<
   Task[],
-  {task_id: string},
+  string,
   ThunkConfig<string>
->('tasks/completeTask', async ({ task_id }, thunkApi) => {
-    const { extra, rejectWithValue } = thunkApi;
+>("tasks/completeTask", async (taskId, thunkApi) => {
+  const { extra, rejectWithValue } = thunkApi;
 
-    try {
-        const response = await extra.api.post<Task[]>('/tasks/complete', {
-            task_id,
-        });
+  try {
+    const response = await extra.api.post<Task[]>("/tasks/complete", {
+      id: taskId,
+    });
 
-        if (!response.data) {
-            throw new Error();
-        }
-
-        return response.data;
-    } catch (e) {
-        console.log(e);
-        return rejectWithValue('error');
+    if (!response.data) {
+      throw new Error();
     }
+
+    return response.data;
+  } catch (e) {
+    console.log(e);
+    return rejectWithValue("error");
+  }
 });

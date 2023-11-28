@@ -6,6 +6,6 @@ export {
     gameReducer,
     gameActions,
 } from './model/slice/gameSlice';
-export {
+export type {
     GameSchema
 } from './model/types/Game';

@@ -1,6 +1,6 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import { ReactComponent as LogoIcon } from 'shared/assets/icons/logo-47-47.svg';
+import LogoIcon from 'shared/assets/icons/logo-47-47.svg?react';
 import cls from './MainPageHeader.module.scss';
 
 interface ProfilePageHeaderProps {

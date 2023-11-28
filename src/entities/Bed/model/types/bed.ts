@@ -1,10 +1,16 @@
+export enum CropEnum {
+  Carrot = "Carrot",
+  Potato = "Potato",
+  Beet = "Beet",
+  Wheat = "Wheat",
+  Flower = "Flower",
+}
+
 export interface Bed {
   id: string;
-  user_id: string;
-  bed_id: string;
-  plant_time: string;
-  crop: string;
-  harvest: boolean;
+  index: number;
+  plantedAt: string;
+  crop: CropEnum;
 }
 
 export interface BedsSchema {
