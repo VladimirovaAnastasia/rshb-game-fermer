@@ -1,4 +1,3 @@
-import {Mods} from "shared/lib/classNames/classNames";
 import classNames from "classNames";
 import {memo} from "react";
 import CoinIcon from "shared/assets/icons/coin-16-16.svg?react";
@@ -14,12 +13,16 @@ interface TaskCardProps {
 export const TaskCard = memo((props: TaskCardProps) => {
   const {className, text, coinsCount, isActive} = props;
 
-  const mods: Mods = {
-    [cls.active]: isActive,
-  };
-
   return (
-    <div className={classNames(cls.TaskCard, mods, [className])}>
+    <div
+      className={classNames(
+        cls.TaskCard,
+        {
+          [cls.active]: isActive,
+        },
+        [className]
+      )}
+    >
       {text && <p className={cls.text}>{text}</p>}
       {coinsCount && (
         <div className={cls.coinsCount}>

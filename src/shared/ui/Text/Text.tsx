@@ -1,4 +1,3 @@
-import {Mods} from "shared/lib/classNames/classNames";
 import classNames from "classNames";
 import {memo} from "react";
 import cls from "./Text.module.scss";
@@ -31,13 +30,8 @@ export const Text = memo((props: TextProps) => {
     align = TextAlign.LEFT,
   } = props;
 
-  const mods: Mods = {
-    [cls[theme]]: true,
-    [cls[align]]: true,
-  };
-
   return (
-    <div className={classNames(cls.Text, mods, [className])}>
+    <div className={classNames(cls.Text, cls[theme], cls[align], [className])}>
       {title && <p className={cls.title}>{title}</p>}
       {text && <p className={cls.text}>{text}</p>}
     </div>

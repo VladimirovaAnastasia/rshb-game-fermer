@@ -1,4 +1,3 @@
-import {Mods} from "shared/lib/classNames/classNames";
 import classNames from "classNames";
 import {useTranslation} from "react-i18next";
 import {Text, TextAlign, TextTheme} from "shared/ui/Text/Text";
@@ -71,12 +70,8 @@ export const ProfileCard = (props: ProfileCardProps) => {
     );
   }
 
-  const mods: Mods = {
-    [cls.editing]: !readonly,
-  };
-
   return (
-    <div className={classNames(cls.ProfileCard, mods, [className])}>
+    <div className={classNames(cls.ProfileCard, [className])}>
       <div className={cls.data}>
         {data?.avatar && (
           <div className={cls.avatarWrapper}>

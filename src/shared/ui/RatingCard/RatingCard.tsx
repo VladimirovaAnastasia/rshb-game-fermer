@@ -1,4 +1,3 @@
-import {Mods} from "shared/lib/classNames/classNames";
 import classNames from "classNames";
 import {memo} from "react";
 import CoinIcon from "shared/assets/icons/coin-16-16.svg?react";
@@ -16,13 +15,18 @@ interface RatingCardProps {
 export const RatingCard = memo((props: RatingCardProps) => {
   const {className, img, name, city, coinsCount, isCurrent} = props;
 
-  const mods: Mods = {
-    [cls.active]: isCurrent,
-  };
   const Icon = img;
 
   return (
-    <div className={classNames(cls.RatingCard, mods, [className])}>
+    <div
+      className={classNames(
+        cls.RatingCard,
+        {
+          [cls.active]: isCurrent,
+        },
+        [className]
+      )}
+    >
       <div className={cls.info}>
         <Icon />
         <div>

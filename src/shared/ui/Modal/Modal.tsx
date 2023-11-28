@@ -1,4 +1,3 @@
-import {Mods} from "shared/lib/classNames/classNames";
 import classNames from "classNames";
 import React, {
   MutableRefObject,
@@ -71,11 +70,6 @@ export const Modal = (props: ModalProps) => {
     };
   }, [isOpen, onKeyDown]);
 
-  const mods: Mods = {
-    [cls.opened]: isOpen,
-    [cls.isClosing]: isClosing,
-  };
-
   if (lazy && !isMounted) {
     return null;
   }
@@ -83,7 +77,14 @@ export const Modal = (props: ModalProps) => {
   return (
     <Portal>
       <div
-        className={classNames(cls.Modal, mods, [className, theme, "app_modal"])}
+        className={classNames(
+          cls.Modal,
+          {
+            [cls.opened]: isOpen,
+            [cls.isClosing]: isClosing,
+          },
+          [className, theme, "app_modal"]
+        )}
       >
         <div className={cls.overlay} onClick={closeHandler}>
           <div className={cls.content} onClick={onContentClick}>

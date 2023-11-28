@@ -11,7 +11,7 @@ import Flower from "shared/assets/images/farm/flower-icon.svg?react";
 import Wheat from "shared/assets/images/farm/wheat-icon.svg?react";
 import Bed from "shared/assets/images/game-1/bed.svg?react";
 import CoinIcon from "shared/assets/icons/coin-16-16.svg?react";
-import classNames from "classnames";
+import classNames from "classNames";
 import coinSound from "shared/assets/sounds/coins.mp3";
 import cls from "./PlantModal.module.scss";
 import { CropEnum } from "entities/Bed/model/types/bed";

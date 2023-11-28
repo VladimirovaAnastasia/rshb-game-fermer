@@ -1,4 +1,3 @@
-import {Mods} from "shared/lib/classNames/classNames";
 import classNames from "classNames";
 import React, {
   InputHTMLAttributes,
@@ -63,12 +62,16 @@ export const Input = memo((props: InputProps) => {
     setCaretPosition(e?.target?.selectionStart || 0);
   };
 
-  const mods: Mods = {
-    [cls.readonly]: readonly,
-  };
-
   return (
-    <div className={classNames(cls.InputWrapper, {}, [className])}>
+    <div
+      className={classNames(
+        cls.InputWrapper,
+        {
+          [cls.readonly]: readonly,
+        },
+        [className]
+      )}
+    >
       {placeholder && (
         <div className={cls.placeholder}>{`${placeholder}>`}</div>
       )}
