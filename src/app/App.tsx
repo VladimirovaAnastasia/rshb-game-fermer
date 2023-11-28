@@ -1,5 +1,5 @@
 import { Suspense, useEffect } from "react";
-import { classNames } from "shared/lib/classNames/classNames";
+import classNames from "classNames";
 import { useTheme } from "app/providers/ThemeProvider";
 import { AppRouter } from "app/providers/AppRouter";
 import { useDispatch } from "react-redux";

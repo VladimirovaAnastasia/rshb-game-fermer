@@ -13,7 +13,7 @@ import {
   fetchBedsData,
   harvestBeds,
   plantBeds,
-} from "entities/Bed/model/services/fetchBedsData/fetchBedsData";
+} from "entities/Bed/model/services/fetchBedsData";
 import { getUserAuthData } from "entities/User";
 import { getTasksData } from "entities/Task";
 import {
@@ -158,7 +158,7 @@ const FarmPage = () => {
         }),
       );
       // TODO: завершить таск
-      // handleCompleteTask("plant")
+      // handleCompleteTask("Plant")
     }
   };
 
@@ -170,7 +170,8 @@ const FarmPage = () => {
 
   const handleSubmitGeniusModal = (success: boolean) => {
     if (success) {
-      // handleCompleteTask('finance_genius');
+      // TODO: завершить таск
+      // handleCompleteTask('FinanceGenius');
     }
     setOpenedGeniusModal(false);
   };

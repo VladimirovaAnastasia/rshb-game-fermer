@@ -1,18 +1,16 @@
-import { classNames } from 'shared/lib/classNames/classNames';
-import { useEffect, useMemo } from 'react';
-import {
-  StatisticsCard,
-} from 'shared/ui/StatisticsCard/StatisticsCard';
-import { StatisticsCardType } from 'shared/ui/StatisticsCard/types';
-import { useDispatch, useSelector } from 'react-redux';
-import { getUserAuthData } from 'entities/User';
-import cls from './GameHeader.module.scss';
-import { fetchGameData } from 'entities/Game/model/services/fetchGameData/fetchGameData';
-import { getGameData } from 'entities/Game/model/selectors/getGameData/getGameData';
+import classNames from "classNames";
+import {useEffect, useMemo} from "react";
+import {StatisticsCard} from "shared/ui/StatisticsCard/StatisticsCard";
+import {StatisticsCardType} from "shared/ui/StatisticsCard/types";
+import {useDispatch, useSelector} from "react-redux";
+import {getUserAuthData} from "entities/User";
+import cls from "./GameHeader.module.scss";
+import {fetchGameData} from "entities/Game/model/services/fetchGameData/fetchGameData";
+import {getGameData} from "entities/Game/model/selectors/getGameData/getGameData";
 
 export enum GameHeaderTheme {
-  LIGHT = 'light',
-  GREEN = 'green',
+  LIGHT = "light",
+  GREEN = "green",
 }
 
 interface GameHeaderProps {
@@ -21,7 +19,7 @@ interface GameHeaderProps {
 }
 
 // TODO: Добавить здесь вызовы, подцепить к беку
-export const GameHeader = ({ theme, className }: GameHeaderProps) => {
+export const GameHeader = ({theme, className}: GameHeaderProps) => {
   const user = useSelector(getUserAuthData);
   const balance = useSelector(getGameData);
 
@@ -46,14 +44,14 @@ export const GameHeader = ({ theme, className }: GameHeaderProps) => {
         <StatisticsCard
           className={cls[theme]}
           cardType={StatisticsCardType.COINS}
-          text={`${balance ?? ''}`}
+          text={`${balance ?? ""}`}
         />
       </div>
       <div className={cls.content}>
         <StatisticsCard
           className={cls[theme]}
           cardType={StatisticsCardType.DAYS}
-          text={date ? `День ${date}` : ''}
+          text={date ? `День ${date}` : ""}
         />
         <StatisticsCard
           className={cls[theme]}

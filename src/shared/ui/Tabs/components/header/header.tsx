@@ -1,7 +1,7 @@
 import {
     useRef, useState, useEffect, MouseEvent, useMemo,
 } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
+import classNames from "classNames";
 import { setSlideline } from './utils';
 import { HeaderProps } from './types';
 import styles from './styles.module.scss';

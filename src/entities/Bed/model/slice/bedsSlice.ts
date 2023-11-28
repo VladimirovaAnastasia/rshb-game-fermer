@@ -4,7 +4,7 @@ import {
   fetchBedsData,
   harvestBeds,
   plantBeds,
-} from "../services/fetchBedsData/fetchBedsData";
+} from "../services/fetchBedsData";
 
 const initialState: BedsSchema = {
   isLoading: false,

@@ -3,7 +3,8 @@ import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { memo } from 'react';
 import { useSelector } from 'react-redux';
 import { getUserAuthData } from 'entities/User';
-import { classNames, Mods } from 'shared/lib/classNames/classNames';
+import {Mods} from "shared/lib/classNames/classNames";
+import classNames from "classNames";
 import cls from './MenuItem.module.scss';
 import { SidebarItemType } from '../../model/items';
 

@@ -1,26 +1,21 @@
-import { classNames } from 'shared/lib/classNames/classNames';
-import { useTranslation } from 'react-i18next';
-import { useEffect, useState } from 'react';
-import cls from './NotFoundPage.module.scss';
+import classNames from "classNames";
+import {useEffect, useState} from "react";
+import cls from "./NotFoundPage.module.scss";
 
 interface NotFoundPageProps {
-    className?: string;
+  className?: string;
 }
 
-export const NotFoundPage = ({ className }: NotFoundPageProps) => {
-    const { t } = useTranslation();
+export const NotFoundPage = ({className}: NotFoundPageProps) => {
+  const [text, setText] = useState<string | null>(null);
 
-    const [text, setText] = useState(null);
+  useEffect(() => {
+    setTimeout(() => {
+      setText("Страница не найдена");
+    }, 1_500);
+  }, []);
 
-    useEffect(() => {
-        setTimeout(() => {
-            setText(t('Страница не найдена'));
-        }, 1_500);
-    }, []);
-
-    return (
-        <div className={classNames(cls.NotFoundPage, {}, [className])}>
-            {text}
-        </div>
-    );
+  return (
+    <div className={classNames(cls.NotFoundPage, {}, [className])}>{text}</div>
+  );
 };

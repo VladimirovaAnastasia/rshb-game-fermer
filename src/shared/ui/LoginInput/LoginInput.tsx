@@ -8,7 +8,7 @@ import {
     ChangeEvent,
     KeyboardEvent,
 } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
+import classNames from "classNames";
 import CloseIcon from 'shared/assets/icons/my_village-24-24.svg?react';
 import { Hint } from './components/hint';
 import { Icon } from './components/icon';

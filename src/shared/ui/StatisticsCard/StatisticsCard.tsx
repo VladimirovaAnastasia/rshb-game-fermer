@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { cardTypeIconMapper } from 'shared/ui/StatisticsCard/items';
-import { classNames } from 'shared/lib/classNames/classNames';
+import classNames from "classNames";
 import cls from './StatisticsCard.module.scss';
 import { StatisticsCardType } from './types';
 

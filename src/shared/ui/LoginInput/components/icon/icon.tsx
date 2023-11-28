@@ -1,5 +1,5 @@
 import { MouseEvent, FocusEvent } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
+import classNames from "classNames";
 import { IconProps } from './types';
 import styles from './styles.module.scss';
 

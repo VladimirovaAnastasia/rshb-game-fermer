@@ -1,7 +1,7 @@
 import {
     Children, ReactElement, useEffect, useMemo, useState,
 } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
+import classNames from "classNames";
 import { Header } from './components/header';
 import { Content } from './components/content';
 import { TabProps } from './components/tab/types';
